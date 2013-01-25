@@ -1,0 +1,50 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{ulem}
+\usepackage{ntheorem}
+\pagestyle{fancy}
+\usepackage{amssymb}
+\fancyhf{}
+\begin{document}
+\author{Maximilian Ortwein}
+\title{Datenbanksysteme Zusammenfassung}
+%Fußzeile mittig (Seitennummer)
+\fancyfoot[C]{\thepage}
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead[L]{\small{\textbf{Datenbanksysteme Zusammenfassung}}}
+\renewcommand{\headrulewidth}{0.5pt}
+{\theoremsymbol{$\square$}\newtheorem{Beweis}{Beweis}}
+\maketitle
+
+\section{Kanonische Überdeckung}
+Entfernen aller überflüssigen Attribute. Durch:\\
+\textbf{1. Rechtsreduktion}, d.h. wenn in einem Term auf der Rechten Seite mehr als ein Buchstabe
+steht, muss man den Term Aufspalten.\\
+z.B. $A\to BC$ wird zu $A \to B$ und $A \to C$.\\
+
+\textbf{2. Linksreduktion}, wenn im Term links mehr als ein Buchstabe vorkommt, wird der Term geteilt dazu werden die Attributhüllen erstellt und überprüft welche Teile weggekürzt werden können. z.B. $ABD \to E $ sind die Hüllen $AB$, $AD$, $BD$.\\
+Kürzen der Attribute:\\
+\textbf{2.1 Kürzen}, um einen Buchstaben wegkürzen zu können muss er unabhängig vom Ergebnis sein. d.h. z.B. um das A aus obigem Beispiel kürzen zu können muss E in BD enthalten sein.
+
+\textbf{3. Nochmaliges Kürzen und Zusammenfassen}, Dazu bildet man noch einmal die Attributhüllen und schaut ob der Buchstabe anders als über den angegebenen Buchstaben erreicht wird. Wenn alles gekürzt wurde, fasst man die Terme zusammen.
+
+\section{Multi-User Aspects}
+\begin{itemize}
+\item \textbf{Lost-Update} kommt vor wenn zur gleichen Zeit Werte in die Datenbank geschrieben 
+werden, dabei wird der zuerst geschriebene Wert überschrieben.
+\item  \textbf{Dirty Read} Daten einer noch nicht abgeschlossenen Transaktion werden gelesen.
+\item \textbf{Non-Repeatable Read} Bedeutet, das innerhalb einer Transaktion die gleiche Leseoperation unterschriedliche ergebnisse liefert.
+\item \textbf{Phantom Problem:} (auch Inkonsistentes lesen) Wenn während einer Transaktion die sich auf mehrere Datensätze mit einer speziellen Eigenschaft bezieht, eine Transaktion gleichzeitig läuft die Daten mir dieser Eigenschaft einfügt können die Datensätze der ersten Transaktion inkonsistent werden.
+
+\end{itemize}  
+\end{document}

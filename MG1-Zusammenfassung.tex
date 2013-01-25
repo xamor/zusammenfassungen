@@ -1,0 +1,248 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{ulem}
+\pagestyle{fancy}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\fancyhf{}
+\begin{document}
+\author{Maximilian Ortwein}
+\title{Mathematische Grundlagen Zusammenfassung }
+%Fußzeile mittig (Seitennummer)
+\fancyfoot[C]{\thepage}
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead[L]{\small{\textbf{Mathematische Grundlagen Zusammenfassung}}}
+\fancyhead[R]{\small{Maximilian Ortwein}}
+\renewcommand{\headrulewidth}{0.5pt}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Logik} % Aufgabe 1
+- $\neg$ geht vor $\wedge$ und $\wedge$ geht vor $\vee$\\
+- Implikation: $A \to B = \neg A \vee B = \neg A \to \neg B$\\
+- Äquivalenz: $A \leftrightarrow B = (A \to B) \vee (B \to A)$\\
+- Antivalenz: $A \oplus B = (\neg A \wedge B) \vee (A \wedge \neg B)$\\
+- KNF: $(A \vee B) \wedge (B \vee C)$\\
+- DNF: $(B \wedge C) \vee (A \wedge C)$\\
+
+\section{Beweisregeln}
+-\textbf{Abtrennregel} sind A und $ A \to B$ allgemeingültig, dann ist auch B allgemeingültig\\
+- \textbf{Fallunterscheidung} sind $A \to B$ und $ \neg A \to B$ allgemeingültig, dann ist B allgemeingültig\\
+-\textbf{Kettenschluss} sind $A\to B$ und $B \to C$ allgemeingült, so ist $A \to C$ allgemeingültig\\
+-\textbf{Kontraposition} sind $A \to B$ Allgemeingültig, so ist $\neg A \to \neg B$ allgemeingültig\\
+-\textbf{indirekter Beweis} sind $A \to B$ und $A \to \neg B$ allgemeingültig, so ist $\neg A$ allgemeingültig\\ 
+\section{Mengen}
+- extensionale Darstellung: $A = \{a_1, a_2,...,a_n\}$ \\
+- intensionale Darstellung: $A = \{a | E(a)\}$ E(a) bedeutet eine Bestimmte eigenschaft die a erfüllen Muss damit es in der Menge ist.\\
+\textbf{Mengenoperationen}\\
+- Vereinigung: $A \cup B = \{x | x\in A \vee x \in B\}$ alle Elemente aus A und B\\
+- Durchschnitt: $A \cap B = \{x | x\in A \wedge x \in B\}$ nur Elemente die in A und B vorkommen\\
+- Differenz: $A \backslash B = \{x | x \in A \wedge x \notin B\}$ Alle Elemente die nur in A enthalten sind\\
+- Symmetrische Differenz: $A \triangle B = (A \backslash B) \cup (B \backslash A)$ Alle Elemente die nur in A und nur in B vorkommen\\
+- Komplement: $\bar A = U \backslash A$ das Universum ohne A\\
+- Zwei Mengen sind Disjunkt, wenn gilt $A \cap B = \emptyset$\\
+\textbf{Potenzmenge:}\\
+- $\mathcal{P}(A) = \{X | X \subseteq A\}$\\
+1. $X \in \mathcal{P}(A) \Leftrightarrow X \subseteq A$ \\ 
+2. $\emptyset ,A\in \mathcal{P}(A)$\\
+3. Wenn A endlich ist, gilt: $||\mathcal{P}(A)|| = 2^{||A||}$\\
+BSP: $\mathcal{P}(\{1,2,3\}) = \{\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{2,3\},\{1,3\},\{1,2,3\}\}$\\
+Teilmengen von Potenzmengen sind Mengenfamilien\\
+\textbf{Partitionen:}\\
+Partitionen sind Mengenfamilien und stellen eine Zerlegung des Universums dar\\
+Mengenfamilie: $\mathcal{F} \subseteq \mathcal{P}(A)$\\
+1. $B \cap C = \emptyset$ für Alle Mengen $B,C\in \mathcal{F}$ mit $B \neq C$\\ 
+2. $\bigcup \limits_{B\in \mathcal{F}} B = A$\\
+$B \in \mathcal{F}$ heißt Komponente der Partition\\
+Haubersches Theorem: $\{A_1,\dots A_n\}$ und $\{B_1\dots B_n\}$ sind Partitionen von U. Gilt $A_i \subseteq B_i$ dann gilt $B_i \subseteq A_i$ und $A_i = B_i$ für alle $i\in\{1\dots n\}$\\
+
+\section{Relationen}
+Kreuzprodukt: $ A_1 \times A_2 \times \dots \times A_n = \{(a_1,a_2\dots a_n | \textsc{alle Zahlen} 1 \dots n\}$ Jedes Element steht mit jedem Element aus allen Mengen in Beziehung. z.B.$\{a,b,c\} \times \{2,3\} = \{(a,2),(a,3),(b,2),(b,3),(c,2),(c,3)\}$\\
+$(a,b)$ = Tupel; $(a,b,c)$ = Tripel; Quadrupel für n=4\\
+Sind alle Mengen gleich schreibt man $A^n$ also z.B. $\mathbb{N}^2$ ist $\mathbb{N} \times \mathbb{N}$\\
+Eine Menge $R \subseteq A_1\times \dots \times A_n$ heisst n-Stellige Relation\\ 
+Eine Binäre Relation ist definiert als $R \subseteq A^2$\\ $xRy \Leftrightarrow (x,y) \in R$ und bedeutet x steht in Relation R zu y\\ 
+\textbf{Funktionen}\\
+1. Linkstotal: $(\forall x \in A)(\exists y \in B)[(x,y)\in R]$ \\
+Jedes Elemement der Menge A ist mit min. einem Element der Menge B in Relation\\
+2. Rechtseindeutig: $(\forall x \in A)(\forall y,z \in B)[(x,y)\in R \wedge (x,z) \in R \to y = z]$\\
+Ein Element der Menge A kann nur mit genau einem Element der Menge B in Relation stehen\\
+3. Rechtstotal: $(\forall y \in B)(\exists x \in A)[(x,y)\in R]$\\
+Jedes Element der Menge B steht in Relation zu min. einem Element der Menge A\\
+4. Linkseindeutig: $(\forall x,y \in A)(\forall z \in B)[(x,z)\in R \wedge (y,z)\in R \to x = y]$\\
+Ein Element der Menge B kann nur mit einem genau Element der Menge A in Relation stehen\\ 
+
+R ist eine (totale) Funktion wenn R linkstotal und Rechtseindeutig ist\\
+R ist eine partielle Funktion wenn R rechtseindeutig ist\\
+
+Schreibweisen für Funktionen: $f \subseteq A\times B \equiv f:A \to B$\\
+$(a,b)\in f \equiv f(a) = b$ Kompakt: $ f: A \to B: a \mapsto f(a)$\\
+Bild(menge): $f(A_0)=\{f(a)| a \in A_0\}$ $f(A_0)$ sind Bilder von $A_0$ von f\\ Urbild(menge):
+$f^{-1}(B_0) = \{a|f(a) \in B_0\}$ \\
+
+Sind A und B endliche Mengen und $f: A \to B$ eine Funktion, dann gilt:\\ $||A|| = \sum\limits_{b\in B} ||f^{-1}
+(\{b\})||$\\
+
+Eine Funktion f ist:\\
+Surjektiv f ist rechtstotal $(\forall b \in B)[||f^{-1}(\{b\})|| \geq 1]$ es gilt: $||A|| \geq ||B||$\\
+Injektiv:f ist linkseindeutig$(\forall b \in B)[||f^{-1}(\{b\})|| \leq 1]$ es gilt: $||A||\leq ||B||$\\
+Bijektiv: f ist injektiv und surjektiv $(\forall b \in B)[||f^{-1}(\{b\})|| = 1]$ es gilt $||A|| = ||B||$\\
+
+Umkehrrelation: $R^{-1} = \{(y,x)|(x,y)\in R\}$\\
+R ist linkstotal dann $R^{-1}$ rechtstotal; R ist rechtseindeutig, dann $R^{-1}$ linkseindeutig; R ist rechtstotal, dann $R^{-1}$ linkstotal; R ist Linkseindeutig, dann $R^{-1}$ rechtseindeutig.
+
+ist f bijektiv, dann ist $f^{-1}$ auch bijektiv, f ist umkehrbar, wenn $f^{-1}$ eine Funktion ist.\\ Eine Funktion ist genau dann invertierbar, wenn sie bijektiv ist.\\
+
+\textbf{Hintereinanderausführung}\\
+$(g \circ f)(x) = g(f(x))$ es gilt allerdings: $ g\circ f \neq f \circ g$\\
+sind g und f injektiv, so ist $g \circ f$ injektiv; sind g und f surjektiv so ist $g\circ f$ surjektiv; sind g und f bijektiv so ist $g\circ f$ bijektiv\\
+identitätsfunktion:$id_A: A \to A: x \mapsto x$\\
+wenn $f: A \to B$  bijektiv, dann $f^{-1} \circ f = id_A$ und $ f \circ f^{-1} = id_B$\\
+
+
+\subsection{Äquivalenzrelationen}
+reflexiv: $(\forall a\in A)[(a,a) \in R]$\\
+transitiv: $(\forall a,b,c \in A)[((a,b)\in R \wedge (b,c)\in R) \to (a,c)\in R]$\\
+symmetrisch: $(\forall a,b \in A)[(a,b)\in R \to (b,a) \in R]$\\
+Aäquivalenzrelation: reflexiv, transitiv, symmetrisch\\
+
+\subsection{Äquivalenzklassen}
+Es Gilt $R\subseteq A^2$ und $x\in A$\\
+$[x]_R =_{def}\{y|(x,y)\in R\}\subseteq A$ ist eine Äquivalenzklasse von x und x ist Repräsentant\\
+- ist $(x,y)\in R$ dann $[x]_R = [y]_R$\\
+- ist $(x,y)\notin R$ dann sind $[x]_R$ und $[y]_R$ disjunkt\\
+
+\subsubsection{Repräsentantensystem}
+für alle $k_1, k_2 \in K$ mit $k_1 \neq k_2$ gilt $(k_1,k_2)\notin R$\\
+$A = \bigcup \limits_{k\in K} [k]_R$\\
+Die Äquivalenzklassen von K bilden eine Partition von A\\
+$\mathcal{F}$ sei eine Partition von A, dann ist $R \subseteq A^2$ mit $(x,y)\in R \Leftrightarrow (\exists X \in \mathcal{F})[x\in X \wedge y\in X]$ eine Äquvalenzrelation\\
+
+\subsection{Ordnungsrelationen}
+- antisymmetrisch: $(\forall a,b \in A)[((a,b)\in R \wedge (b,a) \in R) \to a = b]$\\
+  wenn a und b verschieden sind, darf nur eines der paare (a,b) oder (b,a) in der Relation vorkommen\\
+- linear: $(\forall a,b)[a \neq b \to ((a,b)\in R \vee (b,a) \in R)]$\\
+  eines der paare (a,b) oder (b,a) müssen vorkommen wenn a und b verschieden sind\\
+  
+ Halbordnung: reflexiv transitiv und antisymmetrisch\\
+ Ordnung(total) reflexiv, transitiv, antisymmetrisch und linear(total)\\
+ ist R Halbordnung, so ist (A,R) Halbgeordnete Menge\\
+ ist R Ordnung, so ist (A,R) geordnete Menge\\
+ 
+ \subsubsection{HASSE-Diagramme}
+ - Elemente aus der Menge A werden durch Knoten dargestellt\\
+ - $(x,y)\in R$ für $x \neq y$ wird y oberhalb von x gezeichnet\\
+ - Wenn es kein $z\notin \{x,y\}$ mit $(x,z)\in R$ und $(z,y)\in R$ gibt werden x und y durch kante verbunden\\
+ 
+ \subsubsection{Minima, Maxima u.s.w.}
+ - Minimum bzw. Maximum: größtes bzw kleinstes Element einer Halbordnung, Min. und Max. müssen in der Halbordnung enthalten sein\\
+ - untere bzw. obere Schranke sind gleich definiert wie das Min. bzw. das Max. allerdings müssen sie nicht zur betrachteten Halbordnung gehören.\\
+ - Infimum bzw Supremum sind die kleinste bzw. größte Obere Schranke\\
+ 
+Inf, Sup, Max und Min sind immer eindeutig!\\
+
+\subsection{Graphen}
+- $G = (V,E)$ V sind Knoten, E sind Kanten\\
+- Weg ist Folge von Knoten\\
+- Kreis ist Weg mit gleichem anfangs und Endknoten\\
+- zusammenhängend heisst, das jeder Knoten verbunden ist\\
+- Baum: Kreisfrei und Zusammenhängend\\
+
+\section{Induktion}
+Induktionsanfang: Zeige, das Aussage gilt für Anfangswert für n (z.B. n=0)\\
+Induktionsschritt, Zeige, dass Aussage für n gilt unter der Annahme, das induktionsvorraussetzung für n-1 gilt.
+
+\subsection{Strukturelle Induktion}
+- IA: Zeige A(x) für alle $x \in B_0$\\
+- IS: Zeige A(x) unter verwendung eines Allgemeinen $x\in B \backslash B_0$ Unter Annnahme, dass IV gilt.
+\subsection{transitive Hülle}
+- $R^+ = \Gamma_{\Join }(R)$\\
+Reflexiv Transitive Hülle: $R^* = R^+ \cup \{(a,a)| a\in A\}$\\
+$x \sim _{R^*} \Leftrightarrow (x,y) \in R^* \wedge (y,x)\in R^*$\\
+$\sim _{R^*}$ ist Äquvalenzrelation\\
+$[x]_{\sim _{R^*}} \leq_{R^*} [y]_{\sim _{R^*}} \Leftrightarrow (x,y)\in R^*$\\
+\subsection{Mächtigkeit von Mengen}
+Zwei Mengen sind gleichmächtig falls es bijektive Funktion $f:A\to B$ gibt.\\
+A ist:\\
+Abzählbar falls surjektive Funktion $f: \mathbb{N} \to A$ existiert\\
+Abzählbar unendlich falls injektive Funktion $f: \mathbb{N} \to A$ existiert\\
+überabzählbar falls A nicht Abzählbar\\
+
+\section{Analysis}
+\subsection{Konvergenz von Folgen}
+Wenn eine Folge gegen c konvergiert, so heißt c Grenzwert. Mathematisch: $\lim\limits_{n\to \infty} a_n = c$\\
+Folge heißt konvergent, wenn Grenzwert existiert andernfalls divergent\\
+Grenzwert ist immer eindeutig\\
+Gilt $a_n \leq b_n$ so gilt $\lim\limits_{n\to \infty} a_n = c \leq \lim\limits_{n\to \infty} b_n = c$\\
+$\lim\limits_{n\to \infty} a_n = \lim\limits_{n\to \infty} c_n = \lim\limits_{n\to \infty} b_n = c$ gilt wenn: $a_n \leq b_n \leq c_n$\\
+$\lim\limits_{n\to \infty} (a_n + b_n) = \lim\limits_{n\to \infty} a_n + \lim\limits_{n\to \infty} b_n$\\
+$\lim\limits_{n\to \infty} (a_n \cdot b_n) = \lim\limits_{n\to \infty} a_n \cdot \lim\limits_{n\to \infty} b_n$\\
+$\lim\limits_{n\to \infty} \frac{a_n}{b_n} = \frac{\lim\limits_{n\to \infty} a_n}{\lim\limits_{n\to \infty} b_n}$ falls $\lim\limits_{n\to \infty} b_n \neq 0$ und $b_n \neq 0$\\
+\subsection{konvergenz von Reihen}
+Reihe: $s_n = \sum \limits ^n _{k=0} a_k$\\
+Wenn $s_n$ Konvergiert so gilt $\sum \limits ^n _{k=0} a_k = \lim\limits_{n\to \infty} s_n  $\\
+Absolut Konvergent: wenn $\sum \limits ^n _{k=0} |a_k|$ Konvergent ist\\
+Majoranten Kriterium (Marihuana-Kriterium ;-) ):\\
+Ist $\sum \limits ^{\infty} _{k=0} b_k$ absolut konvergent und gilt $|a_n| \leq |b_n|$ für in größer $n_0$ so ist $\sum \limits ^{\infty} _{k=0} a_k$ absolut konvergent\\
+Wurzelkriterium:\\
+Gibt es ein $0 \leq q < 1$ und $n_0 \in \mathbb{N}$ mit $\sqrt[n]{|a_n|} \leq q$ für alle $n \geq n_0$ so ist $\sum \limits ^{\infty} _{k=0} a_k$ absolut konvergent\\
+Quotienten-Kriterium:\\
+Gibt es ein $0 \leq q < 1$ und $n_0 \in \mathbb{N}$ mit$|a_{n+1}| \leq q \cdot |a_n|$  für alle $n \geq n_0$ so ist $\sum \limits ^{\infty} _{k=0} a_k$ absolut konvergent\\
+\subsection{oberer und unterer Grenzwert}
+oberer Grenzwert: $\lim\limits_{n\to\infty}\sup a_n$\\
+unterer Grenzwert: $\lim\limits_{n\to\infty}\inf a_n$\\
+Wenn $\lim\limits_{n\to\infty}\inf a_n = \lim\limits_{n\to\infty}\sup a_n = c$ dann $\lim\limits_{n\to\infty} a_n = c$ \\
+Gibt es $c,d \in \mathbb{R}$ mit $c \leq a_n \leq d$ für alle $n \geq n_0$ dann existieren $\lim\limits_{n\to\infty}\inf a_n $ und  $\lim\limits_{n\to\infty}\sup a_n$ und es gilt
+$c \leq \lim\limits_{n\to\infty}\inf a_n \leq \lim\limits_{n\to\infty}\sup a_n \leq d$\\
+$\lim\limits_{n\to\infty}\inf (-a_n) = - \lim\limits_{n\to\infty}\sup a_n$\\
+$\lim\limits_{n\to\infty}\inf a_n^{-1} = (\lim\limits_{n\to\infty}\sup a_n)^{-1}$\\
+\subsection{Asymptotik von Folgen und Reihen}
+$f(n) \in O(g(n)) \Leftrightarrow (\exists c > 0)(\exists n_0)(\forall n \geq n_0)[f(n)\leq c\cdot g(n)]$\\
+f(n) wächst höchstens so schnell wie g(n)\\   
+$f(n) \in \Omega(g(n)) \Leftrightarrow (\exists c > 0)(\exists n_0)(\forall n \geq n_0)[f(n)\geq c\cdot g(n)]$\\
+f(n) wächst mindestens so schnell wie g(n)\\
+$f(n)\in \Theta (g(n)) \Leftrightarrow f(n) \in O(g(n)) \cap \Omega(g(n))$\\
+f(n) wächst genauso schnell wie g(n)\\
+$f(n) \in o(g(n)) \Leftrightarrow (\forall c > 0)(\exists n_0)(\forall n \geq n_0)[f(n) \leq c\cdot g(n)]$\\
+f(n) wächst langsamer als g(n)\\
+$f(n) \in \omega(g(n)) \Leftrightarrow (\forall c > 0)(\exists n_0)(\forall n \geq n_0)[f(n)\geq c\cdot g(n)]$\\
+f(n) wächst schneller als g(n)\\
+
+$f(n) \in O(g(n)) \Leftrightarrow 0 \leq \lim \limits_{n \to \infty} \sup \frac{f(n)}{g(n)}<\infty$\\
+$f(n) \in \Omega (g(n)) \Leftrightarrow 0 \leq \lim \limits_{n \to \infty} \sup \frac{g(n)}{f(n)}<\infty$\\
+$f(n) \in \Theta(g(n)) \Leftrightarrow 0 \leq \lim \limits_{n \to \infty} \inf \frac{f(n)}{g(n)} \leq \lim \limits_{n \to \infty} \sup \frac{f(n)}{g(n)}<\infty$\\
+$f(n) \in o(g(n)) \Leftrightarrow \lim \limits{n \to \infty} \frac{f(n)}{g(n)}= 0$\\
+$f(n) \in \omega(g(n)) \Leftrightarrow \lim \limits{n \to \infty} \frac{g(n)}{f(n)}= 0$\\
+\subsection{Potenzreihen}
+Potenzreihe: $\sum\limits_{n=0}^{\infty}a_n(x-x_0)^n$ mit Entwicklungspunkt $x_0$\\
+Absolut Konvergent falls: $|x - x_0| < R$, R ist Konvergenzradius\\
+divergent falls $|x - x_0| > R$\\
+Konvergiert (oder divergiert bestimmt) $\frac{|a_n|}{|a_{n+1}|}$, gilt $\lim\limits_{n\to\infty} \frac{|a_n|}{|a_{n+1}|} = R$ \\
+Konvergiert (oder divergiert bestimmt) $\frac{1}{\sqrt[n]{|a_n|}}$, gilt $\lim\limits_{n\to\infty} \frac{1}{\sqrt[n]{|a_n|}} = R$\\
+Wenn $c < 0$ statt $c > 0$ dann divergiert Folge bestimmt gegen $ -\infty$\\
+$\sum\limits^{\infty}_{n=0} x^n$ hat $ R = 1$\\
+$\sum\limits^{\infty}_{n=0} \frac{x^n}{n}$, hat $ R = 1$ konvergenz x = -1, divergenz x = 1\\
+$\sum\limits^{\infty}_{n=0} \frac{x^n}{n^2}$, hat R = 1, konvergen |x| = 1\\
+\textbf{TAYLOR-Reihen}\\
+- $e^x = \sum\limits^{\infty}_{n=0} \frac{1}{n!} \cdot x^n$\\
+- $\frac{1}{1-x} = \sum\limits^{\infty}_{n=0} x^n$ für alle x zwischen -1 und 1 weil: $(\frac{1}{1-x})^{(n)} = \frac{n!}{(1-x)^{n+1}}$\\
+- $ln(1+x) = \sum\limits^{\infty}_{n=0} \frac{(-1)^{n+1}}{n}\cdot x^n$ für x zwischen -1 und 1\\
+
+
+$(\sum\limits^{\infty}_{n=0} a_n x^n) + (\sum\limits^{\infty}_{n=0} b_n x^n) = \sum\limits^{\infty}_{n=0} (a_n + b_n) x^n$\\
+
+$(\sum\limits^{\infty}_{n=0} a_n x^n) \cdot (\sum\limits^{\infty}_{n=0} b_n x^n) = \sum\limits^{\infty}_{n=0} (\sum\limits^n_{k=0}a_k\cdot b_{n-k}) x^n$\\
+Substitution:\\
+BSP: $\frac{1}{1+x^2} = \frac{1}{1-z}= \sum\limits^{\infty}_{n=0}z^n = \sum\limits^{\infty}_{n=0}(-x^2)^n = \sum\limits^{\infty}_{n=0}(-1)^n \cdot x^{2n}$\\
+
+\end{document}

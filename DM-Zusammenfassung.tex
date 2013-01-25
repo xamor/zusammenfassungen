@@ -1,0 +1,209 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{ulem}
+%\usepackage{microtype}
+\pagestyle{fancy}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{mathcomp}
+\fancyhf{}
+\begin{document}
+\author{Maximilian Ortwein}
+\title{Data Mining Zusammenfassung }
+%Fußzeile mittig (Seitennummer)
+\fancyfoot[C]{\thepage}
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead[L]{\small{\textbf{Data Mining Zusammenfassung}}}
+\fancyhead[R]{\small{Maximilian Ortwein}}
+\renewcommand{\headrulewidth}{0.5pt}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Data Understanding} 
+\textbf{Project Understanding}\\
+\begin{itemize}
+\item Problem Formulation $\to$ Mapping to Datamining Task $\to$ \\Understanding the Situation
+\item 80-20 Rule: 20\% Wird in Data und Project Understanding verwendet, ist aber zu 80\% ausschlaggebend für den erfolg.
+\end{itemize}
+\textbf{Data Understanding}\\
+\begin{itemize}
+\item Questions:\\
+- Welche Arten von Attributen haben wir?\\
+- Wie ist die Qualität der Daten?\\
+- Hilft eine Visualisierung?\\
+- Sind die Attribute Correlated?\\
+- Gibt es Ausreißer?\\
+- Wie sollen missing values behandelt werden?\\
+\item Reihen sind Instanzen, Objekte oder Records, Spalten sind Attribute, features oder values.
+\item Datentypen:\\
+- Nominal (Klassen oder Kategorien; meist String)\\
+- Ordinal(Lineare Ordnung; Schulnoten oder Temperaturen)\\
+- Numeric (Zahlen)\\
+- discrete (Numeric oder Ordinal als Teilmenge von Integern)\\
+- continous (Reelle Zahlen)\\
+\item Data Quality:\\
+- Garbage in, garbage out\\
+- Accuracy = Nähe des Wertes aus den Daten am realen wert.
+- Geringe Accuracy durch: Noise, fehlerhafte eingaben, Tippfehler\dots\\
+- \textbf{Syntaktische Accuracy:} Eintrag ist nicht in der Domain, z.B. Text in Numerischen Daten. Einfach überprüfbar\\
+- \textbf{Semantische Accuracy:} Eintrag ist in der Domain aber fehlerhaft z.B. John Smith Female. Überprüfung aufwändiger\\
+- \textbf{Completeness:} Ist verletzt wenn die Daten nicht Vollständig sind und dadurch verzerrt (biased)\\
+- \textbf{Unbalanced Data:} Wenn ein eine Art von Einträgen extrem verrauscht ist.\\
+- \textbf{Timeliness:} Sind die Daten aktuell?\\
+\end{itemize}
+
+\subsection{Data Vizualization}
+So bekommt man einen schnellen Überblick über die Daten und erkennt zum Beispiel verzerrungen oder Fehlende Werte.\\
+\subsubsection{Types}
+\begin{itemize}
+\item Bar Charts/Histgrams: numbers of bins Sturges rule $k=\lceil log_2(n)+1\rceil$\\
+\item Boxplots: Boxgröße = Interquartilsabstand, Median einzeichnen als linie, Antennen: jeweils 1.5 facher Interquartilsabstand\\
+\item Scatterplots
+\end{itemize}
+\subsubsection{Correlation Analysis}
+\begin{itemize}
+\item Pearsons R: $r=\frac{\sum(x_i-\overline{x})(y_i - \overline{y})}{\sqrt{\sum(x_i-\overline{x})^2\sum(y_i - \overline{y})^2}}$\\
+- Pearsons erkennt lineare Korrelation\\
+- Auch für monotone nicht lineare Korrelationen ist er nicht  -1 oder 1\\
+- Er kann auch fast null sein Trotz einer monotonen Korrelation
+- Lösung: Rang Koeffizient\\
+\item Spearmans Rho: $\rho=1-6\cdot\frac{\sum\limits^n_{i=1}(r(x_i)-r(y_i))^2}{n(n^2-1)}$\\
+\end{itemize}
+\subsubsection{Outlier Detection}
+Ausreißer sind Datenpunkte die weit entfernt vom Rest liegen. Verursacht werden sie Durch schlechte Quality oder ungewöhnliche Extremwerte.\\
+Handling: Meist ist es Sinnvoll diese Daten aus der Analyse auszuschließen. Wenn sie durch Fehler verursacht wurden auf jeden Fall.\\
+Manchmal können Ausreißer auch das Ziel einer Analyse sein.\\
+Für die Erkennung kann man Grubbs Test oder Boxplots verwenden.\\
+
+\subsubsection{Missing Values}
+Gründe für Missing Values sind fehlerhafte Sensoren, Verweigerung einer Antwort, oder Unsinnige Antworten unter bestimmten Bedingungen.\\
+Behandeln kann man sie in dem man null Werte oder Standartwerte (Median, warscheinlichster Wert usw.) einsetzt.
+\subsubsection{Checklist MUST DO}
+- Die Verteilung eines Attributes überprüfen\\
+- Korrelationen und Zusammenhänge aufdecken\\
+
+\subsection{Visualizing multidimensional data}
+\subsubsection{Types}
+\begin{itemize}
+\item 3D-Scatterplot
+\item Parallel Coordinates
+\item Radarplot
+\item Star Plot 
+\end{itemize}
+\subsubsection{Outlier Detection}
+\begin{itemize}
+\item Scatterplots
+\item Visualize PCA or MDS
+\item Clustering punkte die keinem Cluster angehören sind Outlier
+\end{itemize}
+
+\subsubsection{MDS Multi Dimensional Scaling}
+Positioniert die Datenpunkte im 2D-Raum und nutzt dabei die Abstände im n-D Raum um die Struktur zu erhalten.\\
+Braucht extrem viele Parameter für das Iris Set z.B. 300 da es für jeden datenpunkt die Position x und y bestimmen muss. Zum minimieren der Funktion wird das gradient descent Verfahren verwendet.
+
+\section{Version Space}
+- Syntaktisch unterschiedlicher Hypothesenraum wird mit (k+2) multipliziert.\\
+- Semantisch unterschiedlicher Hypothesenraum wird durch $(k_1+1)\cdot(k_2+2)\cdots(k_n+n)$ berechnet\\
+\subsection{Candidate Elimination}
+Anfang:\\
+$S\{<\emptyset, \emptyset, \emptyset>\}$\\
+$G\{<?, ?,?>\}$\\
+Dann werden für jedes Positive oder Negative Beispiel S und G so angepasst das es akzeptiert wird oder nicht. S wird verallgemeinert, G wird spezialisiert. Die Reihenfolge der Beispiele hat dabei keinen Einfluss auf das Ergebnis.\\
+
+\textbf{HIER EVENTUELL ERGÄNZEN!!!!!!!!!!}
+
+\section{Data Preparation}
+\subsection{Feature Selection}
+Irrelevante Features entfernen und Redundante Features Entfernen\\
+\begin{itemize}
+\item Wähle die Features mit der Besten Bewertung wenn einzelne Features evaluiert werden.
+\item Wähle das bestes Subset aus. Dies ist sehr Kostenintensiv und nur für sehr kleine Mengen möglich.
+\item Forward Selection: Starte mit einer Leeren Menge und füge immer das Feature hinzu das die Accuracy am meisten erhöht.
+\item Backward Elimination: Starte mit allen Features und entferne alle ungeeigneten.
+\end{itemize}
+\subsection{Record Selection}
+Gründe für Subsamples:\\
+\begin{itemize}
+\item Schnellere Berechnung
+\item Crossvalidation mit einen Trainings und einem Testset
+\item Timeliness Veraltete Daten können entfernt werden
+\item Represenetativeness: Finde ein Repräsentatives Subsample
+\item Rare Events müssen insbesondere mit einbezogen werden
+\end{itemize}
+\subsection{Data Cleansing}
+Finde und Korrigiere oder entferne Inaccurate, Incorrecte oder Incomplete Einträge aus dem Datensatz.
+\subsection{improve data quality}
+Alle Buchstaben zu Großbuchstaben ändern. Spaces und unsichtbare Zeichen entfernen. Format von Zahlen anpassen. Aufteilen von Spalten mit mehreren Informationen. Abkürzungen entfernen und Rechtschreibung korrigieren. Schreibweise von addressen vereinheitlichen. Zahlen in standard Format bringen. Überprüfe durch Wörterbücher ob die Werte in die Domäne passen.
+
+\subsection{Missing Values}
+- Entferne den Eintrag\\
+- Ersetze den Wert (Median, Mittelwert...)\\
+- Ersetze den Wert durch einen speziellen Wert\\
+
+\subsection{Transformation of Data}
+\subsubsection{categorical to numerical}
+\begin{itemize}
+\item Binary: 1 und 0
+\item Ordinal: In ihrer Ordnung nummerieren z.B. 1 - k
+\item Categroical Sollten nicht in eine Einzelne Zahl konvertiert werden.
+\end{itemize}
+\subsubsection{numerical to categorical}
+Einen Numerischen Bereich in Bins Aufteilen.
+\begin{itemize}
+\item Equi-Width discretization: Teile die Intervalle in gleichlange Bins auf.
+\item Equi-frequency discretization: Teile die Daten in Bins mit der gleichen Anzahl an Elementen auf.
+\item V-optimal discretization.
+\item Minimal entropy discretization. Minimizes the entropy.
+(Only applicable in the case of classification problems.)
+\end{itemize}
+
+\subsection{Normalisierung}
+Für Manche Datenanalysen (PCA, MDS Clustering) ist die Skala der Daten entscheidend. Deshalb ist es Notwendig die Daten auf eine Standard Skala zu mappen. Normalerweise werden die Daten auf einen Bereich zwischen 0 und 1 gemappt.
+
+\subsection{Principal Component Analysis PCA}
+Erzeugt eine Projektion aus einem Hochdimensionalen Raum in einen Niederdimensionalen Raum. Es nutzt die Varianz der Daten zur Strukturerhaltung. Es versucht möglichst viel der originalvarianz zu erhalten.
+\pagebreak
+\section{Modeling}
+\begin{enumerate}
+\item Select the model class
+\item select the score function
+\item apply the algorithm
+\item validate the result
+\end{enumerate}
+Wähle das Einfachste Model was die Daten noch erklärt!\\
+Globale Modelle (regression) zeigen das Komplette Dataset.\\
+Lokale Modelle (Association Rules) nur ein Subset.\\
+\subsection{Errorfunctions}
+Falschklassifieziertenrate: $\frac{\#Falschklassifiziert}{\#alle Daten}$\\
+Sagt nichts über die Qualität des Classifyers aus.\\
+Klassen können nicht Balanciert sein.\\
+
+\subsection{Cost Matrix}
+Ein generellerer Ansatz als die Errorfunction.\\
+Die Kosten einer falschen Klassifikation können für jede Klasse anders sein.\\
+Deshalb werden sie für jede Klasse in eine Matrix geschrieben.\\
+
+\subsection{Cross Validation}
+Teile die Daten in k Teile. Dann nutze immer einen Teil als Testdatensatz den Rest als Trainingsdatensatz.
+Der die durchschnittliche fehlerrate ist die Fehlerrate des Models.\\
+\subsection{MDL (Minimum Description Length Principle)}
+Ein zu komplexes Modell führt oft zu Overfitting (Das Modell ist zu stark auf die Trainingsdaten angepasst). 
+Die MDL besagt, wähle das Modell das bei gleicher Vorhersagequalität das Modell mit den Wenigsten Trainingsdaten zu nehmen ist.
+\section{Clustering}
+\subsection{Finding Patterns}
+
+\end{document}
