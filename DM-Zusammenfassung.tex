@@ -235,5 +235,23 @@ Für die Entscheidung welcher Datenpunkt zu welchem Cluster gehört, muss man di
 \item Complete Linkage: Abstand der am weitesten entfernten Punkte der Cluster
 \end{itemize}
 \subsection{Dendograms}
- 
+Sind binäre Bäume. Unten oder Links kommen die Datenpunkte hin. Die Cluster werden miteinander verbunden und es wird bei der Verbindung der Abstand zwischen den Clustern eingezeichnet. 
+\subsection{k-Means}
+\begin{itemize}
+\item Bestimme die Anzahl von Clustern k (Ist eine Benutzereingabe)
+\item wähle zufällig k Datenpunkte als Anfangsmittelpunkte
+\item Weise jedem Datenpunkt sein Zentrum zu (das mit dem Kleinsten Abstand)
+\item Berechne die Zentren neu als Durchschnitt aller punkte eines Clusters
+\item Wiederhole ab schritt 3 bis keine Änderungen mehr auftreten
+\end{itemize} 
+\subsection{DBSCAN}
+Dichtenbasierte Clusteringalgorithmen haben oft die besten Ergebnisse auf numerische Daten. Sie weisen die regionen mit Hohen dichten einem Cluster zu.
+\begin{itemize}
+\item Finde einen Datenpunkt mit einer hohen Dichte um sich
+\item Alle e Nachbarn gehören zu dem Cluster
+\item So lange die dichte hoch ist erweitere das Cluster
+\item entferne das cluster aus dem datensatz und fang wieder von vorne an
+\end{itemize}
+
+\section{Association Rule}
 \end{document}
