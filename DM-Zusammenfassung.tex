@@ -220,6 +220,20 @@ Typen:\\
 Vor dem Clustern sollten die Daten normalisiert werden.\\
 Cluster sollten nicht von Maßeinheiten abhängen!\\
 
-\subsection{Similarity}
+\subsection{Hierarchical Clustering}
+Cluster werden Schritt für Schritt aufgebaut normalerweise Bottom up. Das heißt jeder Datenpunkt ist ein Cluster und wird dann in jedem Schritt verschmolzen. agglomerative\\
 
+Das Gegenteil ist die Top Down Strategie, alle Daten sind in einem Cluster und werden Zerlegt. divisive\\
+
+Für die Entscheidung welcher Datenpunkt zu welchem Cluster gehört, muss man die Similarity messen.
+
+\subsubsection{Dissimilarity (Abstände)}
+\begin{itemize}
+\item Centroid: Der Abstand zwischen den Mittelpunkten der Cluster.
+\item Average: Der durchschnittliche Abstand aller Punkte der Cluster
+\item Single Linkage: der Abstand der zwei am engsten beieinander liegenden Punkte der Cluster. (Kann ketten verursachen!)
+\item Complete Linkage: Abstand der am weitesten entfernten Punkte der Cluster
+\end{itemize}
+\subsection{Dendograms}
+ 
 \end{document}
