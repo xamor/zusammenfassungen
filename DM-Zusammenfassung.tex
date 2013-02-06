@@ -257,5 +257,14 @@ Dichtenbasierte Clusteringalgorithmen haben oft die besten Ergebnisse auf numeri
 \subsection{frequent itemset mining}
 - Support: $\frac{\mbox{\#Transaktionen in denen das Itemset vor kommt}}{\mbox{\#alle Transaktionen}}$ \\
 - Confidence: $\frac{support(X \cup Y)}{support(X)}$
+\subsection{Searching for frequent itemsets}
+\subsubsection{a priori}
+Nimmt den MinSupport entgegen.\\
+Es werden nach und nach alle Itemsets ausgeschlossen, die den MinSupport nicht erfüllen. Man fängt bei einzelnen Items an und Schließt nach und nach noch verbleibende kombinationen aus. Alle übrigbleibenden Sets sind dann Regeln.
+
+\subsubsection{Hassediagramm/Baum}
+Wenn man jedem Knoten in einem Hassediagramm nur einen Elternknoten zuweist, zum Beispiel das erste Item, erhält man den Baum, dieser hat den Vorteil das bei einer Traversierung jeder Knoten genau einmal besucht werden muss.
+\subsubsection{kanonische Form}
+Eine kanonische Form ist dann gegeben wenn die Items lexikografisch geordnet sind: aus einer Menge \{A,B,C,D\} wären ABC kanonisch ACB aber nicht.
 
 \end{document}
