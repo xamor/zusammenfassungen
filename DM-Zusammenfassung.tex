@@ -267,4 +267,52 @@ Wenn man jedem Knoten in einem Hassediagramm nur einen Elternknoten zuweist, zum
 \subsubsection{kanonische Form}
 Eine kanonische Form ist dann gegeben wenn die Items lexikografisch geordnet sind: aus einer Menge \{A,B,C,D\} wären ABC kanonisch ACB aber nicht.
 
+\subsubsection{Kanonische Präfix Regel}
+Jeder Präfix einer kanonischen Form ist selbst kanonisch!\\
+Mit dieser Regel können Itemsets einfach rekursiv durchsucht werden. Es können einfach durch hinzufügen eines Items an das ende eines kanonischen Wortes alle daraus resultierenden kanonischen Gefunden werden. Dazu muss nur noch überprüft werden ob das neue Wort kanonisch ist.
+
+\subsubsection{Frequent, Closed, Maximal}
+Frequent: Itemsets, die den Min Support erfüllen.\\
+Closed: Itemsets, die Keine Supersets mit gleichem oder größerem Support haben.\\
+Maximal: Itemsets die Keine Supersets mehr haben die Frequent sind.\\
+
+\section{Bayes + Regression}
+\subsection{Bayes Theorem}
+$P(h|E)=\frac{P(h|E)\cdot P(h)}{P(E)} $
+Es wird immer die Höchste warscheinlichkeit genommen.\\
+Naive Bayes heisst, es wird davon ausgegangen, dass die Ereignisse voneinander unabhängig sind.\\
+LaPlace Correction kann divisionen durch 0 Entfernen.\\
+
+Pros:\\
+– Gold standard for comparison with other classifiers\\
+– High classification accuracy in many applications\\
+– Classifier can easily be adapted to new training objects\\
+– Integration of domain knowledge\\
+
+Cons:\\
+– The conditional probabilities my not be available\\
+– Independence assumptions might not hold for data set\\
+\pagebreak
+\subsection{Regression}
+\subsubsection{Regressions Linie}
+Eine Lineare Funktion die sich den Daten möglichst gut annähert.\\
+$ y = a\cdot x + b$\\
+$b = \frac{\sum\limits^n _{i = 1} (x_i - \overline{x})(y_i - \overline{y})}{\sum\limits^n _{i = 1} (x_i - \overline{x})^2}$\\
+$a = \overline{y} - b\overline{x} $
+
+\subsubsection{Overfitting}
+Komplexe Funktionen neigen zum Overfitting. Das heißt die Funktion ist zu stark an die Trainingsdaten angepasst und daher dann schlechtere Vorhersagen liefert.\\
+
+Pros:\\
+– Strong mathematical foundation\\
+– Simple to calculate and to understand (for a moderate number of
+dimensions)\\
+– High predictive accuracy\\
+
+Cons:\\
+– Many dependencies are non-linear\\
+– Global model does not adapt to locally different data distributions\\
+ => Locally weighted regression\\
+ 
+ \section{Decision Tree}
 \end{document}
