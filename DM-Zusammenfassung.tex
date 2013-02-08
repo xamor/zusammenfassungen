@@ -315,4 +315,24 @@ Cons:\\
  => Locally weighted regression\\
  
  \section{Decision Tree}
+ \subsection{ID3 Algorythmus}
+ \begin{itemize}
+ \item Berechne die Entropy aller Attribute
+ \item Das Attribut mit der  höchsten Entropy wird die Wurzel
+ \item Führe das für alle Teilbäume aus
+ \item den Baum dadurch rekursiv aufbauen
+ \end{itemize}
+ \subsection{entropy}
+ Entropy: $H = -\sum\limits^n _{i=1} p_i \log p_i $\\
+ Information Gain = H(Class) - H(Class|Atrribut)\\
+ $H(C|A) = -\sum\limits^{An} _{j=1} p_j-(\sum\limits^{Cn} _{i=1} p_{i|j} \log p_{i|j})$\\
+ Gini Index: $1-\sum\limits^{An} _{j=1} p_j$\\
+ 
+ \subsection{prunning}
+ Schlechte zweige abschneiden und durch ein Blatt austauschen.\\
+ Schützt vor overfitting.
+ 
+ \subsection{Regression Tree}
+ Damit werden numerische Werte vorhergesagt statt Klassen.
+ Ähnlich aufgebaut wie Entscheidungsbäume.
 \end{document}
