@@ -417,7 +417,17 @@ Cons:\\
  \subsubsection{Perceptron Convergence}
  Wenn es für einen Datensatz mit zwei Klassen ein Perceptron gibt, dann passt es die Delta Regel so an das alle Daten richtig vorhergesagt werden.
 \subsubsection{Linear Seperability}
-  
+Ein Perceptron mit n Eingaben kann alle Daten eines Datensatzes in zwei Klassen aufteilen wenn es eine Hyperebene gibt die die beiden Klassen teilt.
+\subsection{XOR}
+Ein XOR kann nur mit einer zweiten Schicht gebaut werden.\\
+Diese zweite Schicht, macht aus dem XOR ein lineares Problem was dann durch das output perceptron gelöst wird.
+
+\subsection{Multilayer Perceptrons}
+Um die Gewichte der Hidden Layer zu berechnen verwendet man Multilayerperceptrons die die Gewichte mit dem Gradientenverfahren bestimmen. Die Grenzwertfunktion muss Ableitbar sein.\\
+
+Multilayer Perceptrons besitzen einen Input, einen Output und mehrere Versteckte Schichten. Jede Schicht ist nur mit der nächsten Schicht verbunden.
+
+Mit Backpropagation werden Minima gefunden es ist eine Gradient Decent Methode.\\
 
   
 \end{document}
