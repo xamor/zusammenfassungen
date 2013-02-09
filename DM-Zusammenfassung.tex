@@ -362,5 +362,47 @@ Cons:\\
  
  \subsection{Geometrical Rule Learners}
  \subsubsection{RecBF}
+ Der RecBF Algorithmus erstellt Regeln als Rechtecke. Der Learner erstellt Rechtecke in denen gerade so alle Datenpunkte die zu einer Klasse gehören liegen aber keine einer anderen Klasse. Der Predictor überprüft in welchem Rechteck ein gegebener Punkt liegt und kann ihn somit Klassifizieren.\\
  
+ Operationen: \\
+ - Rule Stability: Wenn die Daten Konfliktfrei sind Terminiert der Algorithmus.\\
+ - Covered: Überprüft ob neue Regeln die Grenzen abdecken.\\
+ - Commit: Einfügen neuer Regeln.\\
+ - Shrink: Verkleinere die Rechtecke damit keine Konflikte entstehen.\\
+ 
+ \subsection{CN2}
+ Bekanntes Beispiel einer der Ersten Rule Learning Algorithmen. Er hat eine einfach Heuristik für das Finden der wichtigsten Rule.\\
+ Der Algorithmus nimmt einen Trainingsdatensatz entgegen und Speichert in einer Liste alle Regeln.\\
+ In einer Schleife über die Verbleibenden Trainingsdaten (am Anfang über alle) sucht er eine gute Regel die einen Teil der Daten abdeckt und fügt sie der Liste hinzu. Dann werden alle Daten aus dem Training entfernt die durch die Regel abgedeckt werden. Das geht solange bis der Performance Grenzwert erreicht ist. Dann wird die Liste mit Regeln zurückgegeben.\\
+ 
+ Es wird eine Beam search verwendet um eine Gute Regel zu finden.\\
+ 
+ Mit der relativen Häufigkeit könnte man einen gute Regel finden:\\
+ p(klasse|condition) = \#Richtig abgedekt / \#aller abgedeckten\\
+ 
+ LaPlace:\\
+ p(klasse|R) = \#Richtig abgedekt +1 / \#aller abgedeckten+\#classes\\
+ 
+ m-Estimates:\\
+  p(klasse|R) = \#Richtig abgedekt +m * p(klasse) / \#aller abgedeckten+m\\
+  
+  Diese Heuristischen Methoden schlagen auf Daten aus der echten Welt relativ oft fehl.\\
+  Scharfe Grenzen sind für Noisy Daten schlecht.\\
+  Die Regeln sind oft nicht aussagekräftig.\\
+  
+  \subsection{First Order Rules}
+  Verwenden im Gegensatz zu Propositional Rules Variablen.\\
+  Es gibt: Konstanten, Variablen, Prädikate, Funktionen.\\
+  Daraus können: Terme, Literale, Ground Literals, Klauseln und horn clauses gebaut werden.\\
+  Horn Clauses haben mindestens ein Positives Literal. IF L1 AND ... AND Ln THEN H.\\
+  Sie werden auch in Prolog verwendet.\\
+  Eine Regel ist erfüllt wenn es mindestens eine Bindung gibt die alle Literale erfüllt.\\
+  \subsubsection{Learning First Order Rules: FOIL}
+  Es gibt keine Funktionen!\\
+  FOIL Komibiert outer Specific to General und inner General to specific.\\
+  FOIL kann auch rekursive Konzepte lernen.\\
+  Durch erweiterungen kann man auch Noisy Data verarbeiten.\\
+  
+  \section{Neuronale Netzwerke}
+  
 \end{document}
