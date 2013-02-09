@@ -30,7 +30,7 @@
 \draw[g](dp)--(mo);
 \draw[g](mo.south)--(p3.center)-|(q2);
 \draw[o](q2)|- node[draw=none,yshift=0.15cm] {\scriptsize likely} (dp);
-\draw[g](q2)--(ev);
+\draw[g](q2)--node[draw=none,right]{\scriptsize unlikely}(ev);
 \draw[g](ev)--(q3);
 \draw[g](q3)-- node[draw=none,right]{\scriptsize success}(de);
 \draw[r](q3)-- node[draw=none,xshift=0.35cm]{\scriptsize no}(cl);
