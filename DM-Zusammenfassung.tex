@@ -404,5 +404,20 @@ Cons:\\
   Durch erweiterungen kann man auch Noisy Data verarbeiten.\\
   
   \section{Neuronale Netzwerke}
+  Neuronen:\\
+  Neuronen sind Schalter mit zwei Zuständen und haben einen Festen Grenzwert ab dem sie Schalten. Ein Neuron bekommt Input von Synapsen (Verbindungen zu anderen Neuronen). Wenn der Grenzwert eines Neurons erreicht ist wird es aktiv und sendet ein Signal an die angeschlossenen Neuronen.\\
+ \subsection{Einfache Perceptrons}
+ Ein einfaches Perceptron besteht aus einer Eingabeschicht aus Eingabeneuronen und einem Ausgabeneuron. Es kann AND OR und NOT darstellen. In den Eingabeneuronen wird die Eingabe vorsortiert und ein Gewicht berechnet (1 für Positiv, 0 für neutral und -1 für Negativ) diese Gewichte werden im Ausgabeneuron aufsummiert wenn diese Summe den Grenzwert erreicht oder Überschreitet feuert das Neuron wird also aktiv. Durch dieses Gebilde kann man Daten in zwei Klassen einteilen. \\
+ 
+ Zum Trainieren werden Zufällige gewichte verteilt, wenn Falsch klassifiziert wird müssen die Gewichte und der Grenzwert angepasst werden.
+ \pagebreak
+ \subsubsection{The Delta Rule}
+ Wenn das Ergebnis 0 ist aber 1 sein sollte veringere den Grenzwert und Passe die Gewichte nach Vorzeichen an.\\
+ Wenn das Ergebnis 1 ist aber 0 sein sollte erhöhe den Grenzwert und passe die Gewichte an.\\
+ \subsubsection{Perceptron Convergence}
+ Wenn es für einen Datensatz mit zwei Klassen ein Perceptron gibt, dann passt es die Delta Regel so an das alle Daten richtig vorhergesagt werden.
+\subsubsection{Linear Seperability}
+  
+
   
 \end{document}
