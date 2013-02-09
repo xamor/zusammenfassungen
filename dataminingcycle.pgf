@@ -1,0 +1,39 @@
+\usetikzlibrary{positioning,arrows}
+
+\begin{tikzpicture}[every node/.style={draw, rounded corners,text width=2.5cm}, q/.style={draw=none, color=blue},a/.style={thick,->,>=triangle 60},g/.style={color=green!70!black,a},r/.style={color=red,a},o/.style={color=orange,a},reo/.style={rotate=90,draw=none,yshift=0.2cm}]
+
+\def\ro{\scriptsize revise objective}
+
+\node (pu) at (0,0) {project understanding};
+\node (du) [below=of pu] {data understanding};
+\node (q1) [q,below=of du] {does data suit problem?};
+\node (dp) [below=of q1] {data preparation};
+\node (mo) [below=of dp] {modeling};
+\node (q2) [q,right=of mo,yshift=.8cm] {technical quality improveable?};
+\node (ev) [above=of q2] {evaluation};
+\node (q3) [q,above=of ev,yshift=0.2cm] {business objective achieved?};
+\node (de) [above=of q3] {deployment};
+\node (ca) [draw=none,right=of q1,xshift=3.8cm] {cancel project};
+\node (cl) [draw=none,right=of q3] {close project};
+
+\node (p1) [left=of q1,xshift=0.1cm,draw=none] {\ };
+\node (p2) [right=of q1,xshift=-0.3cm,draw=none] {\ };
+\node (p3) [below=of mo,draw=none,yshift=1cm] {\ };
+\node (p4) [above=of q2,draw=none,yshift=-0.8cm] {\ };
+\node (p5) [right=of pu,draw=none,xshift=-1.8cm] {\ };
+
+\draw[g](pu)--(du);
+\draw[g](du)--(q1);
+\draw[g](q1)to node[draw=none,xshift=0.8cm,yshift=0.3cm] {\scriptsize yes}(dp);
+\draw[o](q1) -|  (p1.east) node[text width=1cm,draw=none,yshift=-0cm,xshift=0.6cm] {\scriptsize parci-ally} |- node[reo,xshift=-2cm]{\ro} (pu);
+\draw[r](q1) -- node[draw=none,above,xshift=-1cm] {\scriptsize no} (ca);
+\draw[g](dp)--(mo);
+\draw[g](mo.south)--(p3.center)-|(q2);
+\draw[o](q2)|- node[draw=none,yshift=0.15cm] {\scriptsize likely} (dp);
+\draw[g](q2)--(ev);
+\draw[g](ev)--(q3);
+\draw[g](q3)-- node[draw=none,right]{\scriptsize success}(de);
+\draw[r](q3)-- node[draw=none,xshift=0.35cm]{\scriptsize no}(cl);
+\draw[o](q3) node[draw=none,xshift=-1.2cm,yshift=-0.2cm]{\scriptsize partially} -|(p5.center) node[reo,xshift=-1.2cm]{\ro} --  (pu);
+
+\end{tikzpicture}
