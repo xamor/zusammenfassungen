@@ -105,11 +105,24 @@ Handling: Meist ist es Sinnvoll diese Daten aus der Analyse auszuschließen. Wen
 Manchmal können Ausreißer auch das Ziel einer Analyse sein.\\
 Für die Erkennung kann man Grubbs Test oder Boxplots verwenden.
 
+\subsubsection{Grubbs Test}
+\begin{enumerate}
+	\setlength{\parskip}{-1pt}
+	\item setzen der kritischen Schranke (95\%, 90\%, \dots)
+	\item heraussuchen des zugehörigen Wertes $c$ aus der Tabelle
+	\item berechnen von $\overline{x}$ ($\overline{x}=\frac{1}{n} \cdot \sum\limits_{i=1}^{n} x_i$)
+	\item berechnen von $m$ ($m=\max_{i=1}^n |(x_i - \overline{x})|$)
+	\item berechnen der Standardabweichung $s$ ($s=\sqrt{\frac{1}{n}\cdot \sum\limits_{i=1}^{n}(x_i-\overline{x})^2}$)
+	\item berechnen des GRUPPS-Wertes $g$  $(g=\frac{m}{s})$
+\end{enumerate}
+Falls $c<g \Rightarrow$ Outlier
+
 \subsubsection{Missing Values}
 Gründe für Missing Values sind fehlerhafte Sensoren, Verweigerung einer Antwort, oder unsinnige Antworten unter bestimmten Bedingungen.\\
 Behandeln kann man sie in dem man \textit{null} Werte oder Standartwerte (Median, wahrscheinlichster Wert usw.) einsetzt.
 \subsubsection{Checklist MUST DO}
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item Die Verteilung eines Attributes überprüfen
 \item Korrelationen und Zusammenhänge aufdecken
 \end{itemize}
@@ -117,6 +130,7 @@ Behandeln kann man sie in dem man \textit{null} Werte oder Standartwerte (Median
 \subsection{Visualizing multidimensional data}
 \subsubsection{Types}
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item 3D-Scatterplot
 \item Parallel Coordinates
 \item Radarplot
@@ -125,6 +139,7 @@ Behandeln kann man sie in dem man \textit{null} Werte oder Standartwerte (Median
 
 \subsubsection{Outlier Detection}
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item Scatterplots
 \item Visualize PCA or MDS
 \item Clustering: Punkte die keinem Cluster angehören sind Outlier
@@ -136,6 +151,7 @@ Braucht extrem viele Parameter für das Iris Set z.B. 300 da es für jeden Daten
 
 \section{Version Space}
 \begin{itemize}
+\setlength{\parskip}{0pt}
 \item Syntaktisch unterschiedlicher Hypothesenraum wird mit (k+2) multipliziert.
 \item Semantisch unterschiedlicher Hypothesenraum wird durch $(k_1+1)\cdot(k_2+2)\cdots(k_n+n)$ berechnet
 \end{itemize}
@@ -153,6 +169,7 @@ Hierbei kann es auch sein, dass G zum Schluss mehr als nur ein Tupel enthält.
 \subsection{Feature Selection}
 Irrelevante und redundante Features entfernen
 \begin{itemize}
+\setlength{\parskip}{0pt}
 \item Wähle die Features mit der besten Bewertung wenn einzelne Features evaluiert werden.
 \item Wähle das bestes Subset aus. Dies ist sehr kostenintensiv und nur für sehr kleine Mengen möglich.
 \item Forward Selection: Starte mit einer leeren Menge und füge immer das Feature hinzu das die Genauigkeit am meisten erhöht.
@@ -202,6 +219,7 @@ Finde und korrigiere oder entferne ungenaue, inkorrekte oder unvollständige Ein
 \subsubsection{numerisch zu kategorisch}
 Einen numerischen Bereich in Bins aufteilen.
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item \textit{Equi-Width discretization}: Teile die Intervalle in Bins mit gleicher Breite auf.
 \item \textit{Equi-frequency discretization}: Teile die Daten in Bins mit der gleichen Anzahl an Elementen auf.
 \item \textit{V-optimal discretization}
@@ -213,37 +231,39 @@ Für manche Datenanalysen (PCA, MDS Clustering) ist die Skala der Daten entschei
 
 \subsection{Principal Component Analysis PCA}
 Erzeugt eine Projektion aus einem hochdimensionalen Raum in einen niederdimensionalen Raum. Es nutzt die Varianz der Daten zur Strukturerhaltung. Es versucht möglichst viel der Originalvarianz zu erhalten.
-%\pagebreak
 
 \section{Modeling}
 \begin{enumerate}
+\setlength{\parskip}{-1pt}
 \item Auswählen der \textit{model class}
 \item Auswählen der \textit{score function}
 \item Anwenden des Algorithmus
 \item Validieren des Ergebnisses
 \end{enumerate}
 Wähle das Einfachste Model was die Daten noch erklärt!\\
-Globale Modelle (Regression) zeigen das komplette Dataset, lokale Modelle (Association Rules) nur ein Subset.\\
+Globale Modelle (Regression) zeigen das komplette Dataset, lokale Modelle (Association Rules) nur ein Subset.
 
 \subsection{Errorfunctions}
 Falschklassifiziertenrate: $\frac{\#\mbox{falsch klassifiziert}}{\#\mbox{alle Daten}}$\\
 Sagt nichts über die Qualität des Classifiers aus.\\
-Klassen können nicht balanciert sein.\\
+Klassen können nicht balanciert sein.
 
 \subsection{Cost Matrix}
 Ein generellerer Ansatz als die Errorfunktion.\\
 Die Kosten einer falschen Klassifikation können für jede Klasse anders sein.\\
-Deshalb werden sie für jede Klasse in eine Matrix geschrieben.\\
+Deshalb werden sie für jede Klasse in eine Matrix geschrieben.
 
 \subsection{Cross Validation}
 Teile die Daten in k Teile. Dann nutze immer einen Teil als Testdatensatz den Rest als Trainingsdatensatz.\\
-Die durchschnittliche Fehlerrate ist die Fehlerrate des Modells.\\
+Die durchschnittliche Fehlerrate ist die Fehlerrate des Modells.
+
 \subsection{MDL (Minimum Description Length Principle)}
 Ein zu komplexes Modell führt oft zu Overfitting (Das Modell ist zu stark auf die Trainingsdaten angepasst).\\ 
 Die MDL besagt, wähle das Modell, das bei gleicher Vorhersagequalität, das Modell mit den wenigsten Trainingsdaten ist.
 
 \section{Clustering}
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item Objekte eines Clusters sollten möglichst gleich sein, und Objekte unterschiedlicher Cluster möglichst verschieden.
 \item Cluster können unterschiedliche Formen, Größen und Dichten haben.
 \item Können eine Hirarchie bilden
@@ -254,6 +274,7 @@ Die MDL besagt, wähle das Modell, das bei gleicher Vorhersagequalität, das Mod
 \end{itemize}
 Typen:
 \begin{itemize}
+\setlength{\parskip}{-1pt}
 \item Linkage Based
 \item by Partitions
 \item Desity based
@@ -480,18 +501,22 @@ Diese zweite Schicht, macht aus dem XOR ein lineares Problem was dann durch das 
 \subsection{Multilayer Perceptrons}
 Um die Gewichte der \textit{Hidden Layer} zu berechnen verwendet man Multilayerperceptrons die die Gewichte mit dem Gradientenverfahren bestimmen. Die Grenzwertfunktion muss ableitbar sein.\\
 Multilayer Perceptrons besitzen einen Input, einen Output und mehrere versteckte Schichten. Jede Schicht ist nur mit der nächsten Schicht verbunden.\\
-Mit \textit{Backpropagation} werden Minima gefunden, es ist eine Gradient Decent Methode.\\
+Mit \textit{Backpropagation} werden Minima gefunden, es ist eine Gradient Decent Methode.
 
 \section{SVM}
-Suport Vektor Machines, Klassifiezieren Daten indem sie zwischen den Daten eine Hyperebene einzieht die die Daten in Klassen aufteilt. Die Datenpunkte liegen alle als Vektoren vor. Die Hyperebene wird nur anhand der ihr am nächsten liegenden Datenpunkten berechnet den Sogenannten Support Vectoren. Der Abstand zwischen den Vectoren und der Hyperebene wird maximiert um Platz für vorherzusagende Datenpunkte zu schaffen. Die SVM funktioniert aber nur für linear lösbare Probleme. Da das in der Praxis meist nicht der Fall ist gibt es den Kernel Trick um nicht lineare Probleme zu lösen. Die Idee ist die Daten in eine höhere Dimension zu transformieren in der das Problem linear lösbar ist. Dazu wird die Kernel Funktion verwendet. Spätestens im unendlich hoch dimensionalen Raum kann man die SVM anwenden.
+Suport Vektor Machines, klassifizieren Daten indem sie zwischen den Daten eine Hyperebene einziehen, die die Daten in Klassen aufteilt. Die Datenpunkte liegen alle als Vektoren vor. Die Hyperebene wird nur anhand der ihr am nächsten liegenden Datenpunkten berechnet den sogenannten \textbf{Support Vektoren}. Der Abstand zwischen den Vektoren und der Hyperebene wird maximiert um Platz für vorherzusagende Datenpunkte zu schaffen. Die SVM funktioniert aber nur für linear lösbare Probleme. Da das in der Praxis meist nicht der Fall ist gibt es den Kernel Trick, um nicht lineare Probleme zu lösen. Die Idee ist die Daten in eine höhere Dimension zu transformieren in der das Problem linear lösbar ist. Dazu wird die Kernel Funktion verwendet. Spätestens im unendlich hohen dimensionalen Raum kann man die SVM anwenden.
+
 \section{k-nearest-nighbor}
-KNN ist ein Lazy Algorithmus das heisst die Lernphase besteht nur darin die Trainingsdaten zu Speichern. Die ganze Arbeit wird bei der Vorhersage gemacht.
+KNN ist ein Lazy Algorithmus das heißt die Lernphase besteht nur darin die Trainingsdaten zu speichern. Die ganze Arbeit wird bei der Vorhersage gemacht.
+
 \subsection{1-NN} 
 Suche für den gegebenen Datenpunkt den Punkt der ihm aus den Trainingsdaten am nächsten liegt. Weise dem Punkt diese Klasse zu. 
-\subsection{KNN}
-Suche für einen Datenpunkt die k am nächsten benachbarten Punkte.\\
-- Weise dem Punkt die häufigste Klasse der k-Punkte zu.\\
-- Man kann die Klassen auch gewichten nach der nähe zum Datenpunkt. Zum Beispiel in dem man die Distanz invertiert. Dann hat der nächste Trainingspunkt einen höheren Einfluss auf die Klasse als der am weitesten entfernte. 
 
-Zur Bestimmung eines optimalen k werden Methoden wie Cross-Field-Validation angewendet. Meist sind kleine k sehr anfällig für Noise und zu große k Klassifizieren die Daten falsch oder in nur noch eine Klasse.
+\subsection{K-NN}
+\begin{enumerate}
+\item Suche für einen Datenpunkt die k am nächsten benachbarten Punkte.
+\item Weise dem Punkt die häufigste Klasse der k-Punkte zu.
+\end{enumerate}
+Man kann die Klassen auch gewichten nach der Nähe zum Datenpunkt. Zum Beispiel in dem man die Distanz invertiert. Dann hat der nächste Trainingspunkt einen höheren Einfluss auf die Klasse, als der am weitesten entfernte.\\
+Zur Bestimmung eines optimalen k werden Methoden wie \textit{Cross-Field-Validation} angewendet. Meist sind kleine k sehr anfällig für Noise und zu große k klassifizieren die Daten falsch oder in nur noch eine Klasse.
 \end{document}
