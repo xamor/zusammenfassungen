@@ -482,4 +482,16 @@ Um die Gewichte der \textit{Hidden Layer} zu berechnen verwendet man Multilayerp
 Multilayer Perceptrons besitzen einen Input, einen Output und mehrere versteckte Schichten. Jede Schicht ist nur mit der nächsten Schicht verbunden.\\
 Mit \textit{Backpropagation} werden Minima gefunden, es ist eine Gradient Decent Methode.\\
 
+\section{SVM}
+Suport Vektor Machines, Klassifiezieren Daten indem sie zwischen den Daten eine Hyperebene einzieht die die Daten in Klassen aufteilt. Die Datenpunkte liegen alle als Vektoren vor. Die Hyperebene wird nur anhand der ihr am nächsten liegenden Datenpunkten berechnet den Sogenannten Support Vectoren. Der Abstand zwischen den Vectoren und der Hyperebene wird maximiert um Platz für vorherzusagende Datenpunkte zu schaffen. Die SVM funktioniert aber nur für linear lösbare Probleme. Da das in der Praxis meist nicht der Fall ist gibt es den Kernel Trick um nicht lineare Probleme zu lösen. Die Idee ist die Daten in eine höhere Dimension zu transformieren in der das Problem linear lösbar ist. Dazu wird die Kernel Funktion verwendet. Spätestens im unendlich hoch dimensionalen Raum kann man die SVM anwenden.
+\section{k-nearest-nighbor}
+KNN ist ein Lazy Algorithmus das heisst die Lernphase besteht nur darin die Trainingsdaten zu Speichern. Die ganze Arbeit wird bei der Vorhersage gemacht.
+\subsection{1-NN} 
+Suche für den gegebenen Datenpunkt den Punkt der ihm aus den Trainingsdaten am nächsten liegt. Weise dem Punkt diese Klasse zu. 
+\subsection{KNN}
+Suche für einen Datenpunkt die k am nächsten benachbarten Punkte.\\
+- Weise dem Punkt die häufigste Klasse der k-Punkte zu.\\
+- Man kann die Klassen auch gewichten nach der nähe zum Datenpunkt. Zum Beispiel in dem man die Distanz invertiert. Dann hat der nächste Trainingspunkt einen höheren Einfluss auf die Klasse als der am weitesten entfernte. 
+
+Zur Bestimmung eines optimalen k werden Methoden wie Cross-Field-Validation angewendet. Meist sind kleine k sehr anfällig für Noise und zu große k Klassifizieren die Daten falsch oder in nur noch eine Klasse.
 \end{document}
