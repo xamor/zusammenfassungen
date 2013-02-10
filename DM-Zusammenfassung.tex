@@ -18,6 +18,7 @@
 \usepackage{cancel}
 \usepackage{graphicx}
 \usepackage{mathcomp}
+%\usepackage{paralist}
 \fancyhf{}
 \begin{document}
 \author{Maximilian Ortwein}
@@ -34,69 +35,84 @@
 \pagebreak
 
 \section{Data Understanding} 
-\textbf{Project Understanding}\\
+\textbf{Project Understanding}
 \begin{itemize}
-\item Problem Formulation $\to$ Mapping to Datamining Task $\to$ \\Understanding the Situation
+\item Problemformulierung $\to$ Mapping auf Datamining Task $\to$ \\Verstehen der Situation
 \item 80-20 Rule: 20\% Wird in Data und Project Understanding verwendet, ist aber zu 80\% ausschlaggebend für den erfolg.
 \end{itemize}
-\textbf{Data Understanding}\\
+\textbf{Data Understanding}
 \begin{itemize}
-\item Questions:\\
-- Welche Arten von Attributen haben wir?\\
-- Wie ist die Qualität der Daten?\\
-- Hilft eine Visualisierung?\\
-- Sind die Attribute Correlated?\\
-- Gibt es Ausreißer?\\
-- Wie sollen missing values behandelt werden?\\
-\item Reihen sind Instanzen, Objekte oder Records, Spalten sind Attribute, features oder values.
-\item Datentypen:\\
-- Nominal (Klassen oder Kategorien; meist String)\\
-- Ordinal(Lineare Ordnung; Schulnoten oder Temperaturen)\\
-- Numeric (Zahlen)\\
-- discrete (Numeric oder Ordinal als Teilmenge von Integern)\\
-- continous (Reelle Zahlen)\\
-\item Data Quality:\\
-- Garbage in, garbage out\\
-- Accuracy = Nähe des Wertes aus den Daten am realen wert.
-- Geringe Accuracy durch: Noise, fehlerhafte eingaben, Tippfehler\dots\\
-- \textbf{Syntaktische Accuracy:} Eintrag ist nicht in der Domain, z.B. Text in Numerischen Daten. Einfach überprüfbar\\
-- \textbf{Semantische Accuracy:} Eintrag ist in der Domain aber fehlerhaft z.B. John Smith Female. Überprüfung aufwändiger\\
-- \textbf{Completeness:} Ist verletzt wenn die Daten nicht Vollständig sind und dadurch verzerrt (biased)\\
-- \textbf{Unbalanced Data:} Wenn ein eine Art von Einträgen extrem verrauscht ist.\\
-- \textbf{Timeliness:} Sind die Daten aktuell?\\
+\item Questions:
+	\begin{enumerate}
+	\item Welche Arten von Attributen haben wir?
+	\item Wie ist die Qualität der Daten?
+	\item Hilft eine Visualisierung?\\
+	\item Korrelieren die Attribute?
+	\item Gibt es Ausreißer?
+	\item Wie sollen \textit{missing values} behandelt werden?
+	\end{enumerate}
+\item Reihen sind Instanzen, Objekte oder Records, Spalten sind Attribute, Eigenschaften oder Werte.
+\item Datentypen:
+	\begin{enumerate}
+	\item Nominal (Klassen oder Kategorien; meist String)
+	\item Ordinal(Lineare Ordnung; Schulnoten oder Temperaturen)
+	\item Numeric (Zahlen)
+	\item discrete (Numeric oder Ordinal als Teilmenge von Integern)
+	\item continous (Reelle Zahlen)
+	\end{enumerate}
+\item Data Quality:
+	\begin{enumerate}
+		\item Garbage in, garbage out
+		\item Accuracy (Genauigkeit) = Nähe des Wertes aus den Daten am realen Wert.
+		\item Geringe Genauigkeit durch: Noise, fehlerhafte Eingaben, Tippfehler, \dots
+		\item \textbf{Syntaktische Genauigkeit:} Eintrag ist nicht in der Domain, z.B. Text in numerischen Daten. Einfach überprüfbar
+		\item \textbf{Semantische Genauigkeit:} Eintrag ist in der Domain aber fehlerhaft z.B. John Smith Female. Überprüfung aufwändiger
+		\item \textbf{Completeness:} Ist verletzt wenn die Daten nicht vollständig sind und dadurch verzerrt (biased)
+		\item \textbf{Unbalanced Data:} Wenn eine Art von Einträgen extrem verrauscht ist.
+		\item \textbf{Timeliness:} Sind die Daten aktuell?
+	\end{enumerate}
 \end{itemize}
 
 \subsection{Der Datamining Cycle}
 \input{dataminingcycle.pgf}
 \subsection{Data Vizualization}
-So bekommt man einen schnellen Überblick über die Daten und erkennt zum Beispiel verzerrungen oder Fehlende Werte.\\
+So bekommt man einen schnellen Überblick über die Daten und erkennt zum Beispiel Verzerrungen oder fehlende Werte.
+
 \subsubsection{Types}
 \begin{itemize}
-\item Bar Charts/Histgrams: numbers of bins Sturges rule $k=\lceil log_2(n)+1\rceil$\\
-\item Boxplots: Boxgröße = Interquartilsabstand, Median einzeichnen als linie, Antennen: jeweils 1.5 facher Interquartilsabstand\\
+\setlength{\parskip}{-1pt}
+\item Bar Charts/Histograms: Anzahl der Bins: Sturges rule $k=\lceil log_2(n)+1\rceil$
+\item Boxplots: Boxgröße = Interquartilsabstand, Median einzeichnen als Linie, Antennen: jeweils 1.5 facher Interquartilsabstand
 \item Scatterplots
 \end{itemize}
+
 \subsubsection{Correlation Analysis}
 \begin{itemize}
-\item Pearsons R: $r=\frac{\sum(x_i-\overline{x})(y_i - \overline{y})}{\sqrt{\sum(x_i-\overline{x})^2\sum(y_i - \overline{y})^2}}$\\
-- Pearsons erkennt lineare Korrelation\\
-- Auch für monotone nicht lineare Korrelationen ist er nicht  -1 oder 1\\
-- Er kann auch fast null sein Trotz einer monotonen Korrelation
-- Lösung: Rang Koeffizient\\
+\setlength{\parskip}{-1pt}
+\item Pearsons R: $r=\frac{\sum(x_i-\overline{x})(y_i - \overline{y})}{\sqrt{\sum(x_i-\overline{x})^2\sum(y_i - \overline{y})^2}}$
+	\begin{itemize}
+		\item Pearsons erkennt lineare Korrelation
+		\item Auch für monotone nicht lineare Korrelationen ist er nicht  -1 oder 1
+		\item Er kann auch fast null sein trotz einer monotonen Korrelation
+		\item Lösung: Rang Koeffizient
+	\end{itemize}
 \item Spearmans Rho: $\rho=1-6\cdot\frac{\sum\limits^n_{i=1}(r(x_i)-r(y_i))^2}{n(n^2-1)}$\\
 \end{itemize}
+
 \subsubsection{Outlier Detection}
-Ausreißer sind Datenpunkte die weit entfernt vom Rest liegen. Verursacht werden sie Durch schlechte Quality oder ungewöhnliche Extremwerte.\\
+Ausreißer sind Datenpunkte die weit entfernt vom Rest liegen. Verursacht werden sie Durch schlechte Qualität oder ungewöhnliche Extremwerte.\\
 Handling: Meist ist es Sinnvoll diese Daten aus der Analyse auszuschließen. Wenn sie durch Fehler verursacht wurden auf jeden Fall.\\
 Manchmal können Ausreißer auch das Ziel einer Analyse sein.\\
-Für die Erkennung kann man Grubbs Test oder Boxplots verwenden.\\
+Für die Erkennung kann man Grubbs Test oder Boxplots verwenden.
 
 \subsubsection{Missing Values}
-Gründe für Missing Values sind fehlerhafte Sensoren, Verweigerung einer Antwort, oder Unsinnige Antworten unter bestimmten Bedingungen.\\
-Behandeln kann man sie in dem man null Werte oder Standartwerte (Median, warscheinlichster Wert usw.) einsetzt.
+Gründe für Missing Values sind fehlerhafte Sensoren, Verweigerung einer Antwort, oder unsinnige Antworten unter bestimmten Bedingungen.\\
+Behandeln kann man sie in dem man \textit{null} Werte oder Standartwerte (Median, wahrscheinlichster Wert usw.) einsetzt.
 \subsubsection{Checklist MUST DO}
-- Die Verteilung eines Attributes überprüfen\\
-- Korrelationen und Zusammenhänge aufdecken\\
+\begin{itemize}
+\item Die Verteilung eines Attributes überprüfen
+\item Korrelationen und Zusammenhänge aufdecken
+\end{itemize}
 
 \subsection{Visualizing multidimensional data}
 \subsubsection{Types}
@@ -106,197 +122,232 @@ Behandeln kann man sie in dem man null Werte oder Standartwerte (Median, warsche
 \item Radarplot
 \item Star Plot 
 \end{itemize}
+
 \subsubsection{Outlier Detection}
 \begin{itemize}
 \item Scatterplots
 \item Visualize PCA or MDS
-\item Clustering punkte die keinem Cluster angehören sind Outlier
+\item Clustering: Punkte die keinem Cluster angehören sind Outlier
 \end{itemize}
 
 \subsubsection{MDS Multi Dimensional Scaling}
 Positioniert die Datenpunkte im 2D-Raum und nutzt dabei die Abstände im n-D Raum um die Struktur zu erhalten.\\
-Braucht extrem viele Parameter für das Iris Set z.B. 300 da es für jeden datenpunkt die Position x und y bestimmen muss. Zum minimieren der Funktion wird das gradient descent Verfahren verwendet.
+Braucht extrem viele Parameter für das Iris Set z.B. 300 da es für jeden Datenpunkt die Position x und y bestimmen muss. Zum Minimieren der Funktion wird das \textit{gradient descent} Verfahren verwendet.
 
 \section{Version Space}
-- Syntaktisch unterschiedlicher Hypothesenraum wird mit (k+2) multipliziert.\\
-- Semantisch unterschiedlicher Hypothesenraum wird durch $(k_1+1)\cdot(k_2+2)\cdots(k_n+n)$ berechnet\\
+\begin{itemize}
+\item Syntaktisch unterschiedlicher Hypothesenraum wird mit (k+2) multipliziert.
+\item Semantisch unterschiedlicher Hypothesenraum wird durch $(k_1+1)\cdot(k_2+2)\cdots(k_n+n)$ berechnet
+\end{itemize}
+
 \subsection{Candidate Elimination}
 Anfang:\\
-$S\{<\emptyset, \emptyset, \emptyset>\}$\\
-$G\{<?, ?,?>\}$\\
+$S=\{<\emptyset, \emptyset, \emptyset>\}$\\
+$G=\{<?, ?,?>\}$\\
 Dann werden für jedes Positive oder Negative Beispiel S und G so angepasst das es akzeptiert wird oder nicht. S wird verallgemeinert, G wird spezialisiert. Die Reihenfolge der Beispiele hat dabei keinen Einfluss auf das Ergebnis.\\
+Hierbei kann es auch sein, dass G zum Schluss mehr als nur ein Tupel enthält.
 
-\textbf{HIER EVENTUELL ERGÄNZEN!!!!!!!!!!}
+\textbf{\textcolor{red}{HIER EVENTUELL ERGÄNZEN!!!!!!!!!!}}
 
 \section{Data Preparation}
 \subsection{Feature Selection}
-Irrelevante Features entfernen und Redundante Features Entfernen\\
+Irrelevante und redundante Features entfernen
 \begin{itemize}
-\item Wähle die Features mit der Besten Bewertung wenn einzelne Features evaluiert werden.
-\item Wähle das bestes Subset aus. Dies ist sehr Kostenintensiv und nur für sehr kleine Mengen möglich.
-\item Forward Selection: Starte mit einer Leeren Menge und füge immer das Feature hinzu das die Accuracy am meisten erhöht.
+\item Wähle die Features mit der besten Bewertung wenn einzelne Features evaluiert werden.
+\item Wähle das bestes Subset aus. Dies ist sehr kostenintensiv und nur für sehr kleine Mengen möglich.
+\item Forward Selection: Starte mit einer leeren Menge und füge immer das Feature hinzu das die Genauigkeit am meisten erhöht.
 \item Backward Elimination: Starte mit allen Features und entferne alle ungeeigneten.
 \end{itemize}
+
 \subsection{Record Selection}
-Gründe für Subsamples:\\
+Gründe für Subsamples:
 \begin{itemize}
 \item Schnellere Berechnung
-\item Crossvalidation mit einen Trainings und einem Testset
-\item Timeliness Veraltete Daten können entfernt werden
-\item Represenetativeness: Finde ein Repräsentatives Subsample
-\item Rare Events müssen insbesondere mit einbezogen werden
+\item \textit{Crossvalidation} mit einen Trainings- und einem Testset
+\item \textit{Timeliness}: veraltete Daten können entfernt werden
+\item \textit{Represenetativeness}: finde ein repräsentatives Subsample
+\item \textit{Rare Events} müssen insbesondere mit einbezogen werden
 \end{itemize}
+
 \subsection{Data Cleansing}
-Finde und Korrigiere oder entferne Inaccurate, Incorrecte oder Incomplete Einträge aus dem Datensatz.
+Finde und korrigiere oder entferne ungenaue, inkorrekte oder unvollständige Einträge aus dem Datensatz.
 \subsection{improve data quality}
-Alle Buchstaben zu Großbuchstaben ändern. Spaces und unsichtbare Zeichen entfernen. Format von Zahlen anpassen. Aufteilen von Spalten mit mehreren Informationen. Abkürzungen entfernen und Rechtschreibung korrigieren. Schreibweise von addressen vereinheitlichen. Zahlen in standard Format bringen. Überprüfe durch Wörterbücher ob die Werte in die Domäne passen.
+\begin{enumerate}
+\setlength{\parskip}{0pt}
+\item Alle Buchstaben zu Großbuchstaben ändern.
+\item Spaces und unsichtbare Zeichen entfernen.
+\item Format von Zahlen anpassen.
+\item Aufteilen von Spalten mit mehreren Informationen.
+\item Abkürzungen entfernen und Rechtschreibung korrigieren.
+\item Schreibweise von Adressen vereinheitlichen.
+\item Zahlen in Standardformat bringen.
+\item Überprüfe durch Wörterbücher ob die Werte in die Domäne passen.
+\end{enumerate}
 
 \subsection{Missing Values}
-- Entferne den Eintrag\\
-- Ersetze den Wert (Median, Mittelwert...)\\
-- Ersetze den Wert durch einen speziellen Wert\\
+\begin{itemize}
+\item Entferne den Eintrag
+\item Ersetze den Wert (Median, Mittelwert...)
+\item Ersetze den Wert durch einen speziellen Wert
+\end{itemize}
 
 \subsection{Transformation of Data}
-\subsubsection{categorical to numerical}
+\subsubsection{kategorisch zu numerisch}
 \begin{itemize}
 \item Binary: 1 und 0
 \item Ordinal: In ihrer Ordnung nummerieren z.B. 1 - k
-\item Categroical Sollten nicht in eine Einzelne Zahl konvertiert werden.
+\item Categorical: Sollten nicht in eine einzelne Zahl konvertiert werden.
 \end{itemize}
-\subsubsection{numerical to categorical}
-Einen Numerischen Bereich in Bins Aufteilen.
+
+\subsubsection{numerisch zu kategorisch}
+Einen numerischen Bereich in Bins aufteilen.
 \begin{itemize}
-\item Equi-Width discretization: Teile die Intervalle in gleichlange Bins auf.
-\item Equi-frequency discretization: Teile die Daten in Bins mit der gleichen Anzahl an Elementen auf.
-\item V-optimal discretization.
-\item Minimal entropy discretization. Minimizes the entropy.
-(Only applicable in the case of classification problems.)
+\item \textit{Equi-Width discretization}: Teile die Intervalle in Bins mit gleicher Breite auf.
+\item \textit{Equi-frequency discretization}: Teile die Daten in Bins mit der gleichen Anzahl an Elementen auf.
+\item \textit{V-optimal discretization}
+\item \textit{Minimal entropy discretization}: Minimieren der Entropy. (Nur anwendbar in Fall eines Klassifizierungsproblems.)
 \end{itemize}
 
 \subsection{Normalisierung}
-Für Manche Datenanalysen (PCA, MDS Clustering) ist die Skala der Daten entscheidend. Deshalb ist es Notwendig die Daten auf eine Standard Skala zu mappen. Normalerweise werden die Daten auf einen Bereich zwischen 0 und 1 gemappt.
+Für manche Datenanalysen (PCA, MDS Clustering) ist die Skala der Daten entscheidend. Deshalb ist es notwendig die Daten auf eine Standardskala zu mappen. Normalerweise werden die Daten auf einen Bereich zwischen 0 und 1 gemappt.
 
 \subsection{Principal Component Analysis PCA}
-Erzeugt eine Projektion aus einem Hochdimensionalen Raum in einen Niederdimensionalen Raum. Es nutzt die Varianz der Daten zur Strukturerhaltung. Es versucht möglichst viel der originalvarianz zu erhalten.
-\pagebreak
+Erzeugt eine Projektion aus einem hochdimensionalen Raum in einen niederdimensionalen Raum. Es nutzt die Varianz der Daten zur Strukturerhaltung. Es versucht möglichst viel der Originalvarianz zu erhalten.
+%\pagebreak
+
 \section{Modeling}
 \begin{enumerate}
-\item Select the model class
-\item select the score function
-\item apply the algorithm
-\item validate the result
+\item Auswählen der \textit{model class}
+\item Auswählen der \textit{score function}
+\item Anwenden des Algorithmus
+\item Validieren des Ergebnisses
 \end{enumerate}
 Wähle das Einfachste Model was die Daten noch erklärt!\\
-Globale Modelle (regression) zeigen das Komplette Dataset.\\
-Lokale Modelle (Association Rules) nur ein Subset.\\
+Globale Modelle (Regression) zeigen das komplette Dataset, lokale Modelle (Association Rules) nur ein Subset.\\
+
 \subsection{Errorfunctions}
-Falschklassifieziertenrate: $\frac{\#Falschklassifiziert}{\#alle Daten}$\\
-Sagt nichts über die Qualität des Classifyers aus.\\
-Klassen können nicht Balanciert sein.\\
+Falschklassifiziertenrate: $\frac{\#\mbox{falsch klassifiziert}}{\#\mbox{alle Daten}}$\\
+Sagt nichts über die Qualität des Classifiers aus.\\
+Klassen können nicht balanciert sein.\\
 
 \subsection{Cost Matrix}
-Ein generellerer Ansatz als die Errorfunction.\\
+Ein generellerer Ansatz als die Errorfunktion.\\
 Die Kosten einer falschen Klassifikation können für jede Klasse anders sein.\\
 Deshalb werden sie für jede Klasse in eine Matrix geschrieben.\\
 
 \subsection{Cross Validation}
-Teile die Daten in k Teile. Dann nutze immer einen Teil als Testdatensatz den Rest als Trainingsdatensatz.
-Der die durchschnittliche fehlerrate ist die Fehlerrate des Models.\\
+Teile die Daten in k Teile. Dann nutze immer einen Teil als Testdatensatz den Rest als Trainingsdatensatz.\\
+Die durchschnittliche Fehlerrate ist die Fehlerrate des Modells.\\
 \subsection{MDL (Minimum Description Length Principle)}
-Ein zu komplexes Modell führt oft zu Overfitting (Das Modell ist zu stark auf die Trainingsdaten angepasst). 
-Die MDL besagt, wähle das Modell das bei gleicher Vorhersagequalität das Modell mit den Wenigsten Trainingsdaten zu nehmen ist.
+Ein zu komplexes Modell führt oft zu Overfitting (Das Modell ist zu stark auf die Trainingsdaten angepasst).\\ 
+Die MDL besagt, wähle das Modell, das bei gleicher Vorhersagequalität, das Modell mit den wenigsten Trainingsdaten ist.
+
 \section{Clustering}
-Objekte eines Clusters sollten möglichst gleich sein, und Objekte unterschiedlicher Cluster möglichst verschieden.\\
-Cluster können unterschiedliche Formen, Größen und Dichten haben\\
-Können eine Hirarchie bilden\\
-können sich überschneiden\\
-
-Data Understanding, Class Identification, Reduction (Repräsentanten finden), Outlier Detection, Nois Detection\\
-
-Typen:\\
-- Linkage Based\\
-- by Partitions\\
-- Desity based\\
-- grid based\\
-
-Vor dem Clustern sollten die Daten normalisiert werden.\\
-Cluster sollten nicht von Maßeinheiten abhängen!\\
+\begin{itemize}
+\item Objekte eines Clusters sollten möglichst gleich sein, und Objekte unterschiedlicher Cluster möglichst verschieden.
+\item Cluster können unterschiedliche Formen, Größen und Dichten haben.
+\item Können eine Hirarchie bilden
+\item Können sich überschneiden
+\item Data Understanding, Class Identification, Reduction (Repräsentanten finden), Outlier Detection, Noise Detection
+\item Vor dem Clustern sollten die Daten normalisiert werden.
+\item Cluster sollten nicht von Maßeinheiten abhängen!
+\end{itemize}
+Typen:
+\begin{itemize}
+\item Linkage Based
+\item by Partitions
+\item Desity based
+\item grid based
+\end{itemize}
 
 \subsection{Hierarchical Clustering}
-Cluster werden Schritt für Schritt aufgebaut normalerweise Bottom up. Das heißt jeder Datenpunkt ist ein Cluster und wird dann in jedem Schritt verschmolzen. agglomerative\\
-
-Das Gegenteil ist die Top Down Strategie, alle Daten sind in einem Cluster und werden Zerlegt. divisive\\
-
-Für die Entscheidung welcher Datenpunkt zu welchem Cluster gehört, muss man die Similarity messen.
+Cluster werden Schritt für Schritt aufgebaut normalerweise \textit{Bottom up}. Das heißt jeder Datenpunkt ist ein Cluster und wird dann in jedem Schritt verschmolzen (\textit{agglomerative}).\\
+Das Gegenteil ist die \textit{Top Down} Strategie, alle Daten sind in einem Cluster und werden zerlegt (\textit{divisive}).\\
+Für die Entscheidung welcher Datenpunkt zu welchem Cluster gehört, muss man die \textit{Similarity} (Ähnlichkeit) messen.\\
 
 \subsubsection{Dissimilarity (Abstände)}
 \begin{itemize}
 \item Centroid: Der Abstand zwischen den Mittelpunkten der Cluster.
 \item Average: Der durchschnittliche Abstand aller Punkte der Cluster
-\item Single Linkage: der Abstand der zwei am engsten beieinander liegenden Punkte der Cluster. (Kann ketten verursachen!)
+\item Single Linkage: der Abstand der zwei am engsten beieinander liegenden Punkte der Cluster. (Kann Ketten verursachen!)
 \item Complete Linkage: Abstand der am weitesten entfernten Punkte der Cluster
 \end{itemize}
+
 \subsection{Dendograms}
-Sind binäre Bäume. Unten oder Links kommen die Datenpunkte hin. Die Cluster werden miteinander verbunden und es wird bei der Verbindung der Abstand zwischen den Clustern eingezeichnet. 
+Sind binäre Bäume. Unten oder links kommen die Datenpunkte hin. Die Cluster werden miteinander verbunden und es wird bei der Verbindung der Abstand zwischen den Clustern eingezeichnet. 
+
 \subsection{k-Means}
-\begin{itemize}
-\item Bestimme die Anzahl von Clustern k (Ist eine Benutzereingabe)
+\begin{enumerate}
+\item bestimme die Anzahl von Clustern k (Ist eine Benutzereingabe)
 \item wähle zufällig k Datenpunkte als Anfangsmittelpunkte
-\item Weise jedem Datenpunkt sein Zentrum zu (das mit dem Kleinsten Abstand)
-\item Berechne die Zentren neu als Durchschnitt aller punkte eines Clusters
-\item Wiederhole ab schritt 3 bis keine Änderungen mehr auftreten
-\end{itemize} 
+\item weise jedem Datenpunkt sein Zentrum zu (das mit dem kleinsten Abstand)
+\item Berechne die Zentren neu als Durchschnitt aller Punkte eines Clusters
+\item Wiederhole ab Schritt 3 bis keine Änderungen mehr auftreten
+\end{enumerate}
+
 \subsection{DBSCAN}
-Dichtenbasierte Clusteringalgorithmen haben oft die besten Ergebnisse auf numerische Daten. Sie weisen die regionen mit Hohen dichten einem Cluster zu.
+Dichtebasierte Clusteringalgorithmen haben oft die besten Ergebnisse auf numerische Daten. Sie weisen die Regionen mit hohen Dichten einem Cluster zu.
 \begin{itemize}
+\item setze $\epsilon$ als größter Abstand von einem Punkt (Epsilonumgebung)
+\item setze $minPts$ als die minimaler Anzahl von Datenpunkten in der Epsilonumgebung (Knoten selbst zählt auch dazu!)
 \item Finde einen Datenpunkt mit einer hohen Dichte um sich
 \item Alle e Nachbarn gehören zu dem Cluster
-\item So lange die dichte hoch ist erweitere das Cluster
-\item entferne das cluster aus dem datensatz und fang wieder von vorne an
+\item So lange die Dichte hoch ist, erweitere das Cluster
+\item entferne das Cluster aus dem Datensatz und fange wieder von vorne an
 \end{itemize}
 
 \section{Association Rule}
 \subsection{frequent itemset mining}
-- Support: $\frac{\mbox{\#Transaktionen in denen das Itemset vor kommt}}{\mbox{\#alle Transaktionen}}$ \\
-- Confidence: $\frac{support(X \cup Y)}{support(X)}$
+\begin{itemize}
+\setlength{\parskip}{0pt}
+\item Support: $\frac{\mbox{\#Transaktionen in denen das Itemset vor kommt}}{\mbox{\#alle Transaktionen}}$
+\item Confidence: $\frac{support(X \cup Y)}{support(X)}$
+\end{itemize}
+
 \subsection{Searching for frequent itemsets}
-\subsubsection{a priori}
+\subsubsection{Apriori}
 Nimmt den MinSupport entgegen.\\
-Es werden nach und nach alle Itemsets ausgeschlossen, die den MinSupport nicht erfüllen. Man fängt bei einzelnen Items an und Schließt nach und nach noch verbleibende kombinationen aus. Alle übrigbleibenden Sets sind dann Regeln.
+Es werden nach und nach alle Itemsets ausgeschlossen, die den MinSupport nicht erfüllen. Man fängt bei einzelnen Items an und schließt nach und nach noch verbleibende Kombinationen aus. Alle übrigbleibenden Sets sind dann Regeln.\\
+Immer die ersten k-2 (k = Anzahl der Elemente des nun zu bildenden Itemsets) Elemente eines Itemsets müssen gleich sein zum verschmelzen.\\
+Pruning: (Beispiel)\\
+$\{A,B,C\},\{A,B,D\} \Rightarrow \{A,B,C,D\}$\\
+Da aber $\{B,C,D\}$ nicht vorhanden ist, fällt auch $\{A,B,C,D\}$ wieder raus.
 
 \subsubsection{Hassediagramm/Baum}
 Wenn man jedem Knoten in einem Hassediagramm nur einen Elternknoten zuweist, zum Beispiel das erste Item, erhält man den Baum, dieser hat den Vorteil das bei einer Traversierung jeder Knoten genau einmal besucht werden muss.
 \subsubsection{kanonische Form}
-Eine kanonische Form ist dann gegeben wenn die Items lexikografisch geordnet sind: aus einer Menge \{A,B,C,D\} wären ABC kanonisch ACB aber nicht.
+Eine kanonische Form ist dann gegeben wenn die Items lexikografisch geordnet sind: aus einer Menge $\{A,B,C,D\}$ wären ABC kanonisch ACB aber nicht.
 
 \subsubsection{Kanonische Präfix Regel}
 Jeder Präfix einer kanonischen Form ist selbst kanonisch!\\
-Mit dieser Regel können Itemsets einfach rekursiv durchsucht werden. Es können einfach durch hinzufügen eines Items an das ende eines kanonischen Wortes alle daraus resultierenden kanonischen Gefunden werden. Dazu muss nur noch überprüft werden ob das neue Wort kanonisch ist.
+Mit dieser Regel können Itemsets einfach rekursiv durchsucht werden. Es können einfach durch Hinzufügen eines Items an das Ende eines kanonischen Wortes alle daraus resultierenden kanonischen gefunden werden. Dazu muss nur noch überprüft werden ob das neue Wort kanonisch ist.
 
 \subsubsection{Frequent, Closed, Maximal}
-Frequent: Itemsets, die den Min Support erfüllen.\\
-Closed: Itemsets, die Keine Supersets mit gleichem oder größerem Support haben.\\
-Maximal: Itemsets die Keine Supersets mehr haben die Frequent sind.\\
+Frequent: Itemsets, die den Minimum Support erfüllen.\\
+Closed: Itemsets, die keine Supersets mit gleichem oder größerem Support haben.\\
+Maximal: Itemsets die keine Supersets mehr haben die Frequent sind.\\
 
 \section{Bayes + Regression}
 \subsection{Bayes Theorem}
 $P(h|E)=\frac{P(h|E)\cdot P(h)}{P(E)} $
-Es wird immer die Höchste warscheinlichkeit genommen.\\
-Naive Bayes heisst, es wird davon ausgegangen, dass die Ereignisse voneinander unabhängig sind.\\
-LaPlace Correction kann divisionen durch 0 Entfernen.\\
+Es wird immer die höchste Wahrscheinlichkeit genommen.\\
+\textit{Naive Bayes} heißt, es wird davon ausgegangen, dass die Ereignisse/Attribute voneinander unabhängig sind.\\
+\textit{LaPlace Correction} kann Divisionen durch 0 entfernen.\\
+Pros:
+\begin{itemize}
+\item Gold-Standard für den Vergleich mit anderen Klassifikatoren
+\item hohe Klassifizierungsgenauigkeit in vielen Anwendungen
+\item Klassifikator kann leicht an neue Trainings-Objekte angepasst werden
+\item Integration von \textit{domain knowledge}
+\end{itemize}
+Cons:
+\begin{itemize}
+\item die bedingten Wahrscheinlichkeiten müssen nicht immer verfügbar sein
+\item unabhängige Annahmen gelten nicht unbedingt für den Datensatz
+\end{itemize}
 
-Pros:\\
-– Gold standard for comparison with other classifiers\\
-– High classification accuracy in many applications\\
-– Classifier can easily be adapted to new training objects\\
-– Integration of domain knowledge\\
-
-Cons:\\
-– The conditional probabilities my not be available\\
-– Independence assumptions might not hold for data set\\
-\pagebreak
 \subsection{Regression}
-\subsubsection{Regressions Linie}
+\subsubsection{Regression Line}
 Eine Lineare Funktion die sich den Daten möglichst gut annähert.\\
 $ y = a\cdot x + b$\\
 $b = \frac{\sum\limits^n _{i = 1} (x_i - \overline{x})(y_i - \overline{y})}{\sum\limits^n _{i = 1} (x_i - \overline{x})^2}$\\
@@ -304,130 +355,131 @@ $a = \overline{y} - b\overline{x} $
 
 \subsubsection{Overfitting}
 Komplexe Funktionen neigen zum Overfitting. Das heißt die Funktion ist zu stark an die Trainingsdaten angepasst und daher dann schlechtere Vorhersagen liefert.\\
+Pros:
+\begin{itemize}
+\setlength{\parskip}{0pt}
+\item starke mathematische Grundlagen
+\item einfach zu berechnen und zu verstehen (für mäßige Anzahl an Dimensionen)
+\item hohe Vorhersagegenauigkeit
+\end{itemize} 
+Cons:
+\begin{itemize}
+\setlength{\parskip}{0pt}
+\item viele Abhängigkeiten sind nicht linear
+\item globale Modelle passen sich nicht den anderen lokalen Verteilungen an
+\item $\Rightarrow$ lokal gewichtete Regression
+\end{itemize}
 
-Pros:\\
-– Strong mathematical foundation\\
-– Simple to calculate and to understand (for a moderate number of
-dimensions)\\
-– High predictive accuracy\\
+\section{Decision Tree}
+\subsection{ID3 Algorythmus}
+\begin{itemize}
+\setlength{\parskip}{0pt}
+\item Berechne die Entropy aller Attribute
+\item Das Attribut mit der höchsten Entropy wird die Wurzel
+\item Führe das für alle Teilbäume aus
+\item den Baum dadurch rekursiv aufbauen
+\end{itemize}
 
-Cons:\\
-– Many dependencies are non-linear\\
-– Global model does not adapt to locally different data distributions\\
- => Locally weighted regression\\
- 
- \section{Decision Tree}
- \subsection{ID3 Algorythmus}
- \begin{itemize}
- \item Berechne die Entropy aller Attribute
- \item Das Attribut mit der  höchsten Entropy wird die Wurzel
- \item Führe das für alle Teilbäume aus
- \item den Baum dadurch rekursiv aufbauen
- \end{itemize}
- \subsection{entropy}
- Entropy: $H = -\sum\limits^n _{i=1} p_i \log p_i $\\
- Information Gain = H(Class) - H(Class|Atrribut)\\
- $H(C|A) = -\sum\limits^{An} _{j=1} p_j-(\sum\limits^{Cn} _{i=1} p_{i|j} \log p_{i|j})$\\
- Gini Index: $1-\sum\limits^{An} _{j=1} p_j$\\
- 
- \subsection{prunning}
- Schlechte zweige abschneiden und durch ein Blatt austauschen.\\
- Schützt vor overfitting.
- 
- \subsection{Regression Tree}
- Damit werden numerische Werte vorhergesagt statt Klassen.
- Ähnlich aufgebaut wie Entscheidungsbäume.
- 
- \section{Rule Learning}
- \subsection{Propositional Rules}
- Nimmt nur Atomische fakten.\\
- Zur Kombination werden logische Operationen verwendet.\\
- Es gibt keine Variablen.\\
- 
- IF $x_1 < 100 \wedge x_2 = 4$ THEN Class D\\
- \subsubsection{Finding Proposional Rules}
- \textbf{Extracting Rules from Trees}\\
- Mann kann die Regeln direkt aus dem Baum ableiten.\\
- Die Regeln sind Mutual Exclusive und Konfliktfrei.\\
- Ungeordnet\\
- Und Vollständig\\
- Allerdings sind die Regeln instabil und Redundant.\\
- 
- \subsubsection{Learning Propositional Rules}
- \textbf{Generalization}\\
- Verschmelze zwei regeln zu einer neuen Regel\\
- Oder Erweitere eine Regel um ein weiteres Pattern\\
- \textbf{Specialisation}\\
- Fange mit einer generellen Regel an und Spezialisier sie nach und nach.\\
- 
- \subsection{Geometrical Rule Learners}
- \subsubsection{RecBF}
- Der RecBF Algorithmus erstellt Regeln als Rechtecke. Der Learner erstellt Rechtecke in denen gerade so alle Datenpunkte die zu einer Klasse gehören liegen aber keine einer anderen Klasse. Der Predictor überprüft in welchem Rechteck ein gegebener Punkt liegt und kann ihn somit Klassifizieren.\\
- 
- Operationen: \\
- - Rule Stability: Wenn die Daten Konfliktfrei sind Terminiert der Algorithmus.\\
- - Covered: Überprüft ob neue Regeln die Grenzen abdecken.\\
- - Commit: Einfügen neuer Regeln.\\
- - Shrink: Verkleinere die Rechtecke damit keine Konflikte entstehen.\\
- 
- \subsection{CN2}
- Bekanntes Beispiel einer der Ersten Rule Learning Algorithmen. Er hat eine einfach Heuristik für das Finden der wichtigsten Rule.\\
- Der Algorithmus nimmt einen Trainingsdatensatz entgegen und Speichert in einer Liste alle Regeln.\\
- In einer Schleife über die Verbleibenden Trainingsdaten (am Anfang über alle) sucht er eine gute Regel die einen Teil der Daten abdeckt und fügt sie der Liste hinzu. Dann werden alle Daten aus dem Training entfernt die durch die Regel abgedeckt werden. Das geht solange bis der Performance Grenzwert erreicht ist. Dann wird die Liste mit Regeln zurückgegeben.\\
- 
- Es wird eine Beam search verwendet um eine Gute Regel zu finden.\\
- 
- Mit der relativen Häufigkeit könnte man einen gute Regel finden:\\
- p(klasse|condition) = \#Richtig abgedekt / \#aller abgedeckten\\
- 
- LaPlace:\\
- p(klasse|R) = \#Richtig abgedekt +1 / \#aller abgedeckten+\#classes\\
- 
- m-Estimates:\\
-  p(klasse|R) = \#Richtig abgedekt +m * p(klasse) / \#aller abgedeckten+m\\
-  
-  Diese Heuristischen Methoden schlagen auf Daten aus der echten Welt relativ oft fehl.\\
-  Scharfe Grenzen sind für Noisy Daten schlecht.\\
-  Die Regeln sind oft nicht aussagekräftig.\\
-  
-  \subsection{First Order Rules}
-  Verwenden im Gegensatz zu Propositional Rules Variablen.\\
-  Es gibt: Konstanten, Variablen, Prädikate, Funktionen.\\
-  Daraus können: Terme, Literale, Ground Literals, Klauseln und horn clauses gebaut werden.\\
-  Horn Clauses haben mindestens ein Positives Literal. IF L1 AND ... AND Ln THEN H.\\
-  Sie werden auch in Prolog verwendet.\\
-  Eine Regel ist erfüllt wenn es mindestens eine Bindung gibt die alle Literale erfüllt.\\
-  \subsubsection{Learning First Order Rules: FOIL}
-  Es gibt keine Funktionen!\\
-  FOIL Komibiert outer Specific to General und inner General to specific.\\
-  FOIL kann auch rekursive Konzepte lernen.\\
-  Durch erweiterungen kann man auch Noisy Data verarbeiten.\\
-  
-  \section{Neuronale Netzwerke}
-  Neuronen:\\
-  Neuronen sind Schalter mit zwei Zuständen und haben einen Festen Grenzwert ab dem sie Schalten. Ein Neuron bekommt Input von Synapsen (Verbindungen zu anderen Neuronen). Wenn der Grenzwert eines Neurons erreicht ist wird es aktiv und sendet ein Signal an die angeschlossenen Neuronen.\\
- \subsection{Einfache Perceptrons}
- Ein einfaches Perceptron besteht aus einer Eingabeschicht aus Eingabeneuronen und einem Ausgabeneuron. Es kann AND OR und NOT darstellen. In den Eingabeneuronen wird die Eingabe vorsortiert und ein Gewicht berechnet (1 für Positiv, 0 für neutral und -1 für Negativ) diese Gewichte werden im Ausgabeneuron aufsummiert wenn diese Summe den Grenzwert erreicht oder Überschreitet feuert das Neuron wird also aktiv. Durch dieses Gebilde kann man Daten in zwei Klassen einteilen. \\
- 
- Zum Trainieren werden Zufällige gewichte verteilt, wenn Falsch klassifiziert wird müssen die Gewichte und der Grenzwert angepasst werden.
- \pagebreak
- \subsubsection{The Delta Rule}
- Wenn das Ergebnis 0 ist aber 1 sein sollte veringere den Grenzwert und Passe die Gewichte nach Vorzeichen an.\\
- Wenn das Ergebnis 1 ist aber 0 sein sollte erhöhe den Grenzwert und passe die Gewichte an.\\
- \subsubsection{Perceptron Convergence}
- Wenn es für einen Datensatz mit zwei Klassen ein Perceptron gibt, dann passt es die Delta Regel so an das alle Daten richtig vorhergesagt werden.
+\subsection{entropy}
+Entropy: $H = -\sum\limits^n _{i=1} p_i \log p_i $\\
+Information Gain = H(Class) - H(Class|Atrribut)\\
+$H(C|A) = -\sum\limits^{An} _{j=1} p_j-(\sum\limits^{Cn} _{i=1} p_{i|j} \log p_{i|j})$\\
+Gini Index: $1-\sum\limits^{An} _{j=1} p_j$
+
+\subsection{prunning}
+Schlechte Zweige abschneiden und durch ein Blatt austauschen.\\
+Schützt vor \textit{Overfitting}.
+
+\subsection{Regression Tree}
+Damit werden numerische Werte vorhergesagt statt Klassen.\\
+Ähnlich aufgebaut wie Entscheidungsbäume.
+
+\section{Rule Learning}
+\subsection{Propositional Rules}
+Nimmt nur atomistische Fakten.\\
+Zur Kombination werden logische Operationen verwendet.\\
+Es gibt keine Variablen.\\
+IF $x_1 < 100 \wedge x_2 = 4$ THEN Class D
+
+\subsubsection{Finding Proposional Rules}
+\textbf{Extracting Rules from Trees}\\
+Mann kann die Regeln direkt aus dem Baum ableiten.\\
+Die Regeln sind \textit{Mutual Exclusive} und konfliktfrei, ungeordnet und vollständig.\\
+Allerdings sind die Regeln instabil und redundant.\\
+
+\subsubsection{Learning Propositional Rules}
+\textbf{Generalization}\\
+Verschmelze zwei Regeln zu einer neuen Regel oder erweitere eine Regel um ein weiteres Pattern\\
+\textbf{Specialisation}\\
+Fange mit einer generellen Regel an und spezialisier sie nach und nach.
+
+\subsection{Geometrical Rule Learners}
+\subsubsection{RecBF}
+Der RecBF Algorithmus erstellt Regeln als Rechtecke. Der Learner erstellt Rechtecke in denen gerade so alle Datenpunkte die zu einer Klasse gehören liegen aber keine einer anderen Klasse. Der Predictor überprüft in welchem Rechteck ein gegebener Punkt liegt und kann ihn somit klassifizieren.\\
+Operationen:
+\begin{itemize}
+\setlength{\parskip}{-2pt}
+\item \textit{Rule Stability}: Wenn die Daten konfliktfrei sind terminiert der Algorithmus.
+\item \textit{Covered}: Überprüft ob neue Regeln die Grenzen abdecken.
+\item \textit{Commit}: Einfügen neuer Regeln.
+\item \textit{Shrink}: Verkleinere die Rechtecke, damit keine Konflikte entstehen.
+\end{itemize}
+
+\subsection{CN2}
+Bekanntes Beispiel einer der ersten Rule Learning Algorithmen. Er hat eine einfach Heuristik für das Finden der wichtigsten Rule.\\
+Der Algorithmus nimmt einen Trainingsdatensatz entgegen und speichert in einer Liste alle Regeln. 
+In einer Schleife über die verbleibenden Trainingsdaten (am Anfang über alle), sucht er eine gute Regel die einen Teil der Daten abdeckt und fügt sie der Liste hinzu. Dann werden alle Daten aus dem Training entfernt die durch die Regel abgedeckt werden. Das geht solange bis der \textit{Performance Grenzwert} erreicht ist. Dann wird die Liste mit Regeln zurückgegeben. Es wird eine \textit{Beam search} verwendet um eine gute Regel zu finden. Mit der relativen Häufigkeit könnte man eine gute Regel finden:\\
+$p(klasse|condition) = \dfrac{\#\mbox{richtig abgedekt}}{\#\mbox{aller Abgedeckten}}$\\
+LaPlace:\\
+$p(klasse|R) = \dfrac{\#\mbox{Richtig abgedekt} +1}{\#\mbox{aller Abgedeckten}+\#\mbox{classes}}$\\
+
+m-Estimates:\\
+$p(klasse|R) = \dfrac{\#\mbox{richtig abgedekt} +m \cdot p(klasse)}{\#\mbox{aller Abgedeckten}+m}$\\
+
+Diese heuristischen Methoden schlagen auf Daten aus der echten Welt relativ oft fehl.\\
+Scharfe Grenzen sind für \textit{Noisy} Daten schlecht.\\
+Die Regeln sind oft nicht aussagekräftig.
+
+\subsection{First Order Rules}
+Verwenden im Gegensatz zu Propositional Rules Variablen.\\
+Es gibt: Konstanten, Variablen, Prädikate, Funktionen.\\
+Daraus können: Terme, Literale, Ground Literals, Klauseln und horn clauses gebaut werden.\\
+Horn Clauses haben mindestens ein positives Literal. IF $L_1$ AND \dots AND $L_n$ THEN H.\\
+Sie werden auch in Prolog verwendet.\\
+Eine Regel ist erfüllt wenn es mindestens eine Bindung gibt die alle Literale erfüllt.
+
+\subsubsection{Learning First Order Rules: FOIL}
+Es gibt keine Funktionen!\\
+FOIL kombiniert \textit{outer Specific to General} und \textit{inner General to Specific}.\\
+FOIL kann auch rekursive Konzepte lernen.\\
+Durch Erweiterungen kann man auch Noisy Data verarbeiten.
+
+\section{Neuronale Netzwerke}
+Neuronen:\\
+Neuronen sind Schalter mit zwei Zuständen und haben einen festen Grenzwert ab dem sie Schalten. Ein Neuron bekommt Input von Synapsen (Verbindungen zu anderen Neuronen). Wenn der Grenzwert eines Neurons erreicht ist wird es aktiv und sendet ein Signal an die angeschlossenen Neuronen.
+
+\subsection{Einfache Perceptrons}
+Ein einfaches Perceptron besteht aus einer Eingabeschicht aus Eingabeneuronen und einem Ausgabeneuron. Es kann AND, OR und NOT darstellen. In den Eingabeneuronen wird die Eingabe vorsortiert und ein Gewicht berechnet (1 für positiv, 0 für neutral und -1 für negativ) diese Gewichte werden im Ausgabeneuron aufsummiert. Wenn diese Summe den Grenzwert erreicht oder überschreitet feuert das Neuron, wird also aktiv. Durch dieses Gebilde kann man Daten in zwei Klassen einteilen. \\
+
+Zum Trainieren werden zufällige Gewichte verteilt, wenn falsch klassifiziert wird müssen die Gewichte und der Grenzwert angepasst werden.
+
+\subsubsection{The Delta Rule}
+Wenn das Ergebnis 0 ist aber 1 sein sollte verringere den Grenzwert und passe die Gewichte nach Vorzeichen an.\\
+Wenn das Ergebnis 1 ist aber 0 sein sollte erhöhe den Grenzwert und passe die Gewichte an.\\
+
+\subsubsection{Perceptron Convergence}
+Wenn es für einen Datensatz mit zwei Klassen ein Perceptron gibt, dann passt es die Delta Regel so an das alle Daten richtig vorhergesagt werden.
+
 \subsubsection{Linear Seperability}
 Ein Perceptron mit n Eingaben kann alle Daten eines Datensatzes in zwei Klassen aufteilen wenn es eine Hyperebene gibt die die beiden Klassen teilt.
+
 \subsection{XOR}
 Ein XOR kann nur mit einer zweiten Schicht gebaut werden.\\
-Diese zweite Schicht, macht aus dem XOR ein lineares Problem was dann durch das output perceptron gelöst wird.
+Diese zweite Schicht, macht aus dem XOR ein lineares Problem was dann durch das \textit{output perceptron} gelöst wird.
 
 \subsection{Multilayer Perceptrons}
-Um die Gewichte der Hidden Layer zu berechnen verwendet man Multilayerperceptrons die die Gewichte mit dem Gradientenverfahren bestimmen. Die Grenzwertfunktion muss Ableitbar sein.\\
+Um die Gewichte der \textit{Hidden Layer} zu berechnen verwendet man Multilayerperceptrons die die Gewichte mit dem Gradientenverfahren bestimmen. Die Grenzwertfunktion muss ableitbar sein.\\
+Multilayer Perceptrons besitzen einen Input, einen Output und mehrere versteckte Schichten. Jede Schicht ist nur mit der nächsten Schicht verbunden.\\
+Mit \textit{Backpropagation} werden Minima gefunden, es ist eine Gradient Decent Methode.\\
 
-Multilayer Perceptrons besitzen einen Input, einen Output und mehrere Versteckte Schichten. Jede Schicht ist nur mit der nächsten Schicht verbunden.
-
-Mit Backpropagation werden Minima gefunden es ist eine Gradient Decent Methode.\\
-
-  
 \end{document}
