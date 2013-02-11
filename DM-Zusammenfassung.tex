@@ -114,8 +114,9 @@ Für die Erkennung kann man Grubbs Test oder Boxplots verwenden.
 	\item berechnen von $m$ ($m=\max_{i=1}^n |(x_i - \overline{x})|$)
 	\item berechnen der Standardabweichung $s$ ($s=\sqrt{\frac{1}{n}\cdot \sum\limits_{i=1}^{n}(x_i-\overline{x})^2}$)
 	\item berechnen des GRUPPS-Wertes $g$  $(g=\frac{m}{s})$
+	\item falls $c<g \Rightarrow$ Outlier
+	\item wiederholen aller Schritte ab 2., bis kein Outlier mehr gefunden wird
 \end{enumerate}
-Falls $c<g \Rightarrow$ Outlier
 
 \subsubsection{Missing Values}
 Gründe für Missing Values sind fehlerhafte Sensoren, Verweigerung einer Antwort, oder unsinnige Antworten unter bestimmten Bedingungen.\\
